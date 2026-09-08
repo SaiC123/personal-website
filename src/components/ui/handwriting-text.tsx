@@ -36,8 +36,10 @@ import { useEffect, useRef, useState } from "react";
 
 const OPENTYPE_CDN = "https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js";
 
-const DEFAULT_FONT_URL =
-  "https://cdn.21st.dev/assets/mirror/13/1347863151acdc00fa281daaba1a3543dbce5870b55f9cf7479a15bb84007681.ttf";
+// The original cdn.21st.dev URL isn't CORS-readable from arbitrary origins
+// (it 404s/blocks cross-origin fetches outside the 21st.dev sandbox), so this
+// is self-hosted instead, per the component's own guidance above.
+const DEFAULT_FONT_URL = "/fonts/caveat.ttf";
 
 export interface HandwritingTextProps {
   /** A single phrase to write. Ignored when `words` is given. */

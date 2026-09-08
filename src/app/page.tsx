@@ -93,6 +93,7 @@ export default function Home() {
             <h1 className="text-4xl leading-[1.05] font-medium sm:text-5xl">
               <HandwritingText
                 text={profile.name}
+                fontUrl="/fonts/caveat.ttf"
                 className="text-foreground"
                 height="clamp(2.6rem, 7vw, 4.1rem)"
                 strokeWidth={1.4}
