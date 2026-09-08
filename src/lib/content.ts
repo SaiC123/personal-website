@@ -155,6 +155,7 @@ export const alsoInvolvedIn = [
   "NIT Research",
   "Conduct Flow",
   "Dance",
+  "Piano",
 ];
 
 export const awards = [
@@ -162,7 +163,8 @@ export const awards = [
   { place: "2nd", event: "FBLA State Leadership Conference", detail: "Intro to Social Media Strategy" },
   { place: "3rd", event: "FBLA State Leadership Conference", detail: "Data Analysis" },
   { place: "3rd", event: "FBLA State Leadership Conference", detail: "Community Service Project" },
-  { place: "Finalist ×3", event: "FBLA National Leadership Conference", detail: "" },
+  { place: "Top 16 ×3", event: "FBLA National Leadership Conference", detail: "" },
+  { place: "Top 1%", event: "Blue Ocean", detail: "" },
 ];
 
 // Wilderness First Aid (exp. Mar 2026) and Adult/Pediatric First Aid/CPR/AED
@@ -183,6 +185,6 @@ export const toolkit = {
 
 export const otherActivities = [
   { label: "Martial arts", value: "3rd-degree black belt" },
-  { label: "Music", value: "College-level pianist" },
+  { label: "Music", value: "College-level pianist (Guild, ABRSM)" },
   { label: "Scouting", value: "Life Scout" },
 ];
