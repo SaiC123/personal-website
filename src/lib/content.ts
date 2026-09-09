@@ -5,7 +5,7 @@ export const profile = {
   email: "sai.chowdarapu09@gmail.com",
   linkedin: "https://www.linkedin.com/in/sai-chowdarapu/",
   github: "https://github.com/SaiC123",
-  bio: "Current student taking college-level coursework at Georgia Tech, Georgia State, and Lanier Technical College. Most of what I do outside class is running things, and figuring out the financial and operational side that keeps each one working.",
+  bio: "Current student taking college-level coursework at Georgia Tech. Most of what I do outside class is running things, and figuring out the financial and operational side that keeps each one working.",
   focusNote:
     "Studying Computer Science and Business, with a running interest in how the two fit together.",
 };
@@ -13,7 +13,7 @@ export const profile = {
 export const facts = [
   { k: "AP courses", v: "20+" },
   { k: "Dual enrollment", v: "10+" },
-  { k: "Coursework", v: "Georgia Tech · Georgia State · Lanier Tech (4.0)" },
+  { k: "Coursework", v: "Georgia Tech (4.0)" },
   { k: "SAT", v: "1530 / 1600" },
   { k: "Field", v: "Computer Science / Business" },
   { k: "Based in", v: "Atlanta, Georgia" },
