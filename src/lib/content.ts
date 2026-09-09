@@ -184,8 +184,7 @@ export const awards = [
   { place: "2nd", event: "FBLA State Leadership Conference", detail: "Intro to Social Media Strategy" },
   { place: "3rd", event: "FBLA State Leadership Conference", detail: "Data Analysis" },
   { place: "3rd", event: "FBLA State Leadership Conference", detail: "Community Service Project" },
-  { place: "Top 16 ×3", event: "FBLA National Leadership Conference", detail: "" },
-  { place: "Top 1%", event: "Blue Ocean", detail: "" },
+  { place: "Top 1%", event: "Blue Ocean", detail: "MirrorMind" },
 ];
 
 // Wilderness First Aid (exp. Mar 2026) and Adult/Pediatric First Aid/CPR/AED
