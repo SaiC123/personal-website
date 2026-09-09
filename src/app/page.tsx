@@ -2,7 +2,6 @@ import Image from "next/image";
 import { ArrowUpRight, Mail } from "lucide-react";
 
 import { GithubMark, LinkedinMark } from "@/components/icons";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { HandwritingText } from "@/components/ui/handwriting-text";
 import { CoverflowCarousel, type CoverflowSlide } from "@/components/ui/coverflow-carousel";
@@ -197,13 +196,22 @@ export default function Home() {
             <p className="mb-3 font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
               Also involved in
             </p>
-            <div className="flex flex-wrap gap-2">
-              {alsoInvolvedIn.map((item) => (
-                <Badge key={item} variant="secondary" className="rounded-full px-3 py-1 font-mono text-[12px] font-normal">
-                  {item}
-                </Badge>
+            <ul className="grid gap-0">
+              {alsoInvolvedIn.map((item, i) => (
+                <li
+                  key={item.name}
+                  className={`flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 text-sm ${i !== 0 ? "border-t border-dashed border-border" : ""}`}
+                >
+                  <span className="w-24 shrink-0 font-mono text-[11px] uppercase tracking-wide text-brass-strong">
+                    {item.category}
+                  </span>
+                  <span>
+                    <span className="font-medium text-foreground">{item.name}</span>
+                    {item.note && <span className="text-muted-foreground"> · {item.note}</span>}
+                  </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 

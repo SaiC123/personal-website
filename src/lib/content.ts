@@ -146,18 +146,34 @@ export const activities: Activity[] = [
 // Everything else: real involvement, no full card yet (either not requested
 // as featured, or, for Home More Project and the bank job, still missing
 // real dates since neither is on LinkedIn).
-export const alsoInvolvedIn = [
-  "DocuBridge (HUVTSP)",
-  "NRIVA Business & Finance Internship",
-  "AI & ML Club",
-  "Cyber Security Club",
-  "Trailblazer Robotics",
-  "FBLA",
-  "CafCap (TiE Atlanta)",
-  "NIT Research",
-  "Conduct Flow",
-  "Dance",
-  "Piano",
+export const alsoInvolvedIn: { name: string; category: string; note?: string }[] = [
+  {
+    name: "DocuBridge (HUVTSP)",
+    category: "Business",
+    note: "Business development internship, Harvard summer program",
+  },
+  {
+    name: "NRIVA Business & Finance Internship",
+    category: "Business",
+    note: "Financial analyst internship",
+  },
+  { name: "AI & ML Club", category: "Tech", note: "Co-President" },
+  { name: "Cyber Security Club", category: "Tech", note: "Social media manager" },
+  {
+    name: "Trailblazer Robotics",
+    category: "Tech",
+    note: "Program lead, STEM for preschoolers",
+  },
+  { name: "NIT Research", category: "Research" },
+  { name: "Conduct Flow", category: "Project" },
+  { name: "FBLA", category: "Competition", note: "3x state placement" },
+  {
+    name: "CafCap (TiE Atlanta)",
+    category: "Competition",
+    note: "Co-creator, pitch showcase",
+  },
+  { name: "Piano", category: "Arts", note: "Guild and ABRSM certified" },
+  { name: "Dance", category: "Arts" },
 ];
 
 export const awards = [
