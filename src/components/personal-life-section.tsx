@@ -208,6 +208,18 @@ export function PersonalLifeSection() {
   const active = hobbies.find((h) => h.slug === activeSlug) ?? null;
   const ActiveIcon = active ? hobbyIcons[active.icon] : null;
 
+  // Card height varies a lot with description length (Anime's list is much
+  // longer than most), so measure the real rendered height instead of
+  // guessing - a fixed estimate was letting long cards run past the
+  // bottom edge for some hobbies.
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const [cardHeight, setCardHeight] = React.useState(220);
+  React.useLayoutEffect(() => {
+    if (cardRef.current && active) {
+      setCardHeight(cardRef.current.offsetHeight);
+    }
+  }, [active]);
+
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -221,7 +233,6 @@ export function PersonalLifeSection() {
   // far corner of the whole collage, so it reads as "about this picture"
   // rather than a separate thing happening elsewhere on the page.
   const CARD_WIDTH = 280;
-  const CARD_HEIGHT = 190;
   const CARD_MARGIN = 14;
   const cardPos = (() => {
     if (!hoverBox || containerWidth <= 0) return { left: 0, top: 0 };
@@ -230,8 +241,8 @@ export function PersonalLifeSection() {
       ? hoverBox.left - CARD_MARGIN - CARD_WIDTH
       : hoverBox.left + hoverBox.width + CARD_MARGIN;
     left = Math.max(8, Math.min(left, containerWidth - CARD_WIDTH - 8));
-    let top = hoverBox.top + hoverBox.height / 2 - CARD_HEIGHT / 2;
-    top = Math.max(8, Math.min(top, totalHeight - CARD_HEIGHT - 8));
+    let top = hoverBox.top + hoverBox.height / 2 - cardHeight / 2;
+    top = Math.max(8, Math.min(top, totalHeight - cardHeight - 8));
     return { left, top };
   })();
 
@@ -275,6 +286,7 @@ export function PersonalLifeSection() {
           })}
 
           <div
+            ref={cardRef}
             className={`pointer-events-none absolute z-20 rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${
               active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
             }`}
