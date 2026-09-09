@@ -143,17 +143,17 @@ function CollageTile({
       }`}
       style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, padding: "2px" }}
     >
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="relative h-full w-full overflow-hidden bg-[#101114]">
         <div
           className="absolute inset-0 transition-transform duration-150 ease-out"
-          style={{ transform: `scale(1.06) translate(${parallax.x}px, ${parallax.y}px)` }}
+          style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={leaf.photo} alt="" className="h-full w-full object-cover" />
+          <img src={leaf.photo} alt="" className="h-full w-full object-contain" />
         </div>
         <div
           className={`absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
-            active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/5 ring-black/30"
+            active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/0 ring-black/30"
           }`}
         />
       </div>
