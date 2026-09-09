@@ -503,3 +503,101 @@ export const otherActivities = [
   { label: "Music", value: "College-level pianist (Guild, ABRSM)" },
   { label: "Scouting", value: "Life Scout" },
 ];
+
+export type Hobby = {
+  slug: string;
+  title: string;
+  tagline: string;
+  description: string;
+  icon: "piano" | "dance" | "valorant" | "fortnite" | "naruto" | "himym" | "scouts" | "friends" | "concerts";
+  /** Real photos for this tile. Empty means it's using the icon treatment for now. */
+  photos: string[];
+};
+
+// Placeholder copy - swap in your own words whenever you're ready.
+export const hobbies: Hobby[] = [
+  {
+    slug: "piano",
+    title: "Piano",
+    tagline: "College-level pianist, Guild & ABRSM certified",
+    description:
+      "I've been playing for years and still perform in recitals. It's the one part of my day where I have to slow all the way down and get something exactly right, note by note.",
+    icon: "piano",
+    photos: ["/images/backdrop/piano/piano-1.jpg"],
+  },
+  {
+    slug: "dance",
+    title: "Dance",
+    tagline: "Bollywood dancer, 30+ performances",
+    description:
+      "Bollywood dance has been a constant for me, 30+ performances, background dancing at three concerts, and teaching classes on the side. It's the most fun way I know to work as a team.",
+    icon: "dance",
+    photos: ["/images/backdrop/dance/dance-1.jpg"],
+  },
+  {
+    slug: "valorant",
+    title: "Valorant",
+    tagline: "Tactical FPS, my main competitive game",
+    description:
+      "My go-to when I want something competitive and locked-in. Photos coming soon.",
+    icon: "valorant",
+    photos: [],
+  },
+  {
+    slug: "fortnite",
+    title: "Fortnite",
+    tagline: "The more casual, chaotic pick",
+    description:
+      "Less serious than Valorant, more about squading up with friends. Photos coming soon.",
+    icon: "fortnite",
+    photos: [],
+  },
+  {
+    slug: "naruto",
+    title: "Naruto",
+    tagline: "My favorite anime",
+    description:
+      "The one I always come back to. Photos coming soon.",
+    icon: "naruto",
+    photos: [],
+  },
+  {
+    slug: "himym",
+    title: "HIMYM",
+    tagline: "How I Met Your Mother, on repeat",
+    description:
+      "A comfort rewatch at this point. Photos coming soon.",
+    icon: "himym",
+    photos: [],
+  },
+  {
+    slug: "scouts",
+    title: "Scouts",
+    tagline: "Life Scout, backpacking trips and all",
+    description:
+      "Scouting has meant a lot of time outdoors, including multi-day backpacking treks with my crew.",
+    icon: "scouts",
+    photos: ["/images/personal/scouts.jpg"],
+  },
+  {
+    slug: "friends",
+    title: "Friends",
+    tagline: "A lot of my free time is just this",
+    description:
+      "Most of my time outside everything else goes to this: going out to eat, hanging out, no real agenda. I'll write more here soon.",
+    icon: "friends",
+    photos: ["/images/personal/friends/friends-1.jpg"],
+  },
+  {
+    slug: "concerts",
+    title: "Concerts",
+    tagline: "Rolling Loud, arena shows, and more",
+    description:
+      "I go to as many shows as I can with friends. I'll write more here soon.",
+    icon: "concerts",
+    photos: [
+      "/images/personal/concerts/concerts-1.jpg",
+      "/images/personal/concerts/concerts-2.jpg",
+    ],
+  },
+];

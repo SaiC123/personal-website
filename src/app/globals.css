@@ -10,6 +10,8 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-plex-mono);
   --font-heading: var(--font-inter);
+  --font-display-alt: var(--font-orbitron);
+  --font-body-alt: var(--font-chakra);
   --color-brass: var(--brass);
   --color-brass-strong: var(--brass-strong);
   --color-teal: var(--teal);

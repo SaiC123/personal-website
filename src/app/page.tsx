@@ -13,6 +13,7 @@ import {
 import { GithubMark, LinkedinMark } from "@/components/icons";
 import { HandwritingText } from "@/components/ui/handwriting-text";
 import { ActivitiesSection } from "@/components/activities-section";
+import { PersonalLifeSection } from "@/components/personal-life-section";
 import {
   awards,
   certifications,
@@ -26,6 +27,7 @@ const navLinks = [
   { href: "#about", label: "About" },
   { href: "#activities", label: "Activities" },
   { href: "#awards", label: "Awards" },
+  { href: "#personal", label: "Personal" },
 ];
 
 const otherActivityIcons: Record<string, typeof Swords> = {
@@ -262,6 +264,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Personal life */}
+        <PersonalLifeSection />
 
         {/* Contact */}
         <section id="contact" className="grid gap-8 py-10 sm:grid-cols-[1.2fr_1fr] sm:py-14">
