@@ -158,14 +158,13 @@ export const alsoInvolvedIn: { name: string; category: string; note?: string }[]
     note: "Financial analyst internship",
   },
   { name: "AI & ML Club", category: "Tech", note: "Co-President" },
-  { name: "Cyber Security Club", category: "Tech", note: "Social media manager" },
   {
     name: "Trailblazer Robotics",
     category: "Tech",
     note: "Program lead, STEM for preschoolers",
   },
-  { name: "NIT Research", category: "Research" },
-  { name: "Conduct Flow", category: "Project" },
+  { name: "NIT Research", category: "Research", note: "Cybersecurity research" },
+  { name: "Conduct Flow", category: "Project", note: "AI B2B SaaS project" },
   { name: "FBLA", category: "Competition", note: "3x state placement" },
   {
     name: "CafCap (TiE Atlanta)",
@@ -173,7 +172,11 @@ export const alsoInvolvedIn: { name: string; category: string; note?: string }[]
     note: "Co-creator, pitch showcase",
   },
   { name: "Piano", category: "Arts", note: "Guild and ABRSM certified" },
-  { name: "Dance", category: "Arts" },
+  {
+    name: "Dance",
+    category: "Arts",
+    note: "Bollywood dancer, 30+ performances, background dancer at 3 concerts, taught classes",
+  },
 ];
 
 export const awards = [
