@@ -331,17 +331,20 @@ export const activities: Activity[] = [
 ];
 
 // Backdrop collage behind the Activities carousel, heavily blurred so it
-// reads as ambient texture, not content. Placeholder stock photos until
-// real photos come in to replace them.
+// reads as ambient texture, not content. Real photos, added one activity
+// at a time as they come in (Equinox so far).
 export const activityBackdrop: string[] = [
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1552056776-9b5657118ca4?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=600&h=600&fit=crop&q=60&auto=format",
-  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=600&fit=crop&q=60&auto=format",
+  "/images/backdrop/equinox/equinox-1.jpg",
+  "/images/backdrop/equinox/equinox-2.jpg",
+  "/images/backdrop/equinox/equinox-3.jpg",
+  "/images/backdrop/equinox/equinox-4.jpg",
+  "/images/backdrop/equinox/equinox-5.jpg",
+  "/images/backdrop/equinox/equinox-6.jpg",
+  "/images/backdrop/leadership-initiative/li-1.jpg",
+  "/images/backdrop/leadership-initiative/li-2.jpg",
+  "/images/backdrop/leadership-initiative/li-3.jpg",
+  "/images/backdrop/leadership-initiative/li-4.jpg",
+  "/images/backdrop/leadership-initiative/li-5.jpg",
 ];
 
 export const awards = [
