@@ -306,10 +306,8 @@ export const activities: Activity[] = [
     summary: "College-level pianist, certified through the Guild and ABRSM.",
     bullets: ["College-level pianist.", "Certified through the Guild and ABRSM."],
     skills: ["Music theory", "Performance"],
-    image:
-      "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Close-up of piano keys",
-    placeholderImage: true,
+    image: "/images/piano.jpg",
+    imageAlt: "Sai performing at a piano recital",
   },
   {
     slug: "dance",
@@ -377,6 +375,28 @@ export const activityBackdropBySlug: Record<string, string[]> = {
     "/images/backdrop/homemore-project/homemore-5.jpg",
   ],
   "citizens-bank": ["/images/backdrop/citizens-bank/citizens-bank-1.jpg"],
+  nriva: ["/images/backdrop/nriva/nriva-1.jpg"],
+  "nit-research": [
+    "/images/backdrop/nit-research/nit-research-1.jpg",
+    "/images/backdrop/nit-research/nit-research-2.jpg",
+    "/images/backdrop/nit-research/nit-research-3.jpg",
+  ],
+  "conduct-flow": ["/images/backdrop/conduct-flow/conduct-flow-1.jpg"],
+  cafcap: [
+    "/images/backdrop/cafcap/cafcap-1.jpg",
+    "/images/backdrop/cafcap/cafcap-2.jpg",
+  ],
+  docubridge: ["/images/backdrop/docubridge/docubridge-1.jpg"],
+  "trailblazer-robotics": ["/images/backdrop/trailblazer-robotics/trailblazer-robotics-1.jpg"],
+  piano: [
+    "/images/backdrop/piano/piano-1.jpg",
+    "/images/backdrop/piano/piano-2.jpg",
+  ],
+  dance: [
+    "/images/backdrop/dance/dance-1.jpg",
+    "/images/backdrop/dance/dance-2.jpg",
+    "/images/backdrop/dance/dance-3.jpg",
+  ],
 };
 
 /** Backdrop images for one activity, falling back to its own logo. */
@@ -389,19 +409,74 @@ export function activityBackdropFor(activity: Activity): string[] {
 export const wideBackdropImages = new Set<string>([
   "/images/backdrop/lumora/lumora-1.jpg",
   "/images/backdrop/pypath/pypath-2.jpg",
+  "/images/backdrop/trailblazer-robotics/trailblazer-robotics-1.jpg",
 ]);
 
+// Unusually tall (portrait) source images that need extra height instead,
+// for the same reason.
+export const tallBackdropImages = new Set<string>([
+  "/images/backdrop/innovateatl/innovateatl-1.jpg",
+  "/images/backdrop/innovateatl/innovateatl-4.jpg",
+  "/images/backdrop/homemore-project/homemore-4.jpg",
+]);
+
+// Per-activity overlap scale for the backdrop collage. Lower means smaller,
+// less-upscaled tiles. Defaults to 1.28 (see collageTiles); InnovateATL's
+// source images are already pre-blurred and Home More's are lower-res, so
+// both look better scaled down a bit rather than blown up to fill big tiles.
+export const activityBackdropScale: Record<string, number> = {
+  innovateatl: 1.1,
+  "homemore-project": 1.12,
+};
+
 export const awards = [
-  { place: "1st", event: "TSA National Leadership Conference", detail: "Software Development" },
-  { place: "2nd", event: "FBLA State Leadership Conference", detail: "Intro to Social Media Strategy" },
-  { place: "3rd", event: "FBLA State Leadership Conference", detail: "Data Analysis" },
-  { place: "3rd", event: "FBLA State Leadership Conference", detail: "Community Service Project" },
-  { place: "Top 1%", event: "Blue Ocean", detail: "MirrorMind" },
+  {
+    place: "1st",
+    event: "TSA National Leadership Conference",
+    detail: "Software Development",
+    description:
+      "Built MirrorMind, a real-time, on-device emotion-recognition Chrome extension that reads facial expressions aloud so people who are blind or visually impaired can follow along in conversation. Presented live with the full detection pipeline running on stage.",
+    skills: ["MediaPipe", "TensorFlow.js", "Chrome extension APIs", "TypeScript", "Google OAuth2", "Product design"],
+  },
+  {
+    place: "2nd",
+    event: "FBLA State Leadership Conference",
+    detail: "Intro to Social Media Strategy",
+    description:
+      "Designed a Facebook-first growth strategy for Akshaya Patra, a nonprofit fighting child food insecurity, including a content and design framework, an AI post-optimization tool, and a full budget and metrics plan.",
+    skills: ["Social media strategy", "Campaign planning", "Budgeting", "Canva", "A/B testing", "Data-driven marketing"],
+  },
+  {
+    place: "3rd",
+    event: "FBLA State Leadership Conference",
+    detail: "Data Analysis",
+    description:
+      "Built a data model to optimize crowd management, transportation, and athlete housing for the 2028 LA Olympics, combining clustering, Monte Carlo simulation, and Olympic operations research into funding and staffing recommendations.",
+    skills: ["Python", "Pandas / NumPy", "Data visualization", "Statistical modeling", "Monte Carlo simulation", "Jupyter Notebook"],
+  },
+  {
+    place: "3rd",
+    event: "FBLA State Leadership Conference",
+    detail: "Community Service Project",
+    description:
+      "Co-led a food-insecurity initiative that collected over 5,000 lbs of food, reached 300+ households, and helped open new community food pantries, backed by original survey research and a $10,000 grant.",
+    skills: ["Program management", "Community organizing", "Grant management", "Survey research", "Public speaking"],
+  },
+  {
+    place: "Top 1%",
+    event: "Blue Ocean",
+    detail: "MirrorMind",
+    description:
+      "Rebuilt MirrorMind's emotion-recognition system as a physical wearable, engineering the hardware and connecting it to the same real-time detection pipeline as the software version, then pitched it to Blue Ocean judges.",
+    skills: ["Hardware prototyping", "Embedded systems", "Computer vision", "Pitching"],
+  },
 ];
 
 // Wilderness First Aid (exp. Mar 2026) and Adult/Pediatric First Aid/CPR/AED
 // (exp. Jan 2026) are left off since both have since expired. Say if you've
 // renewed either and I'll add it back.
+export const certificationsUrl = "https://www.linkedin.com/in/sai-chowdarapu/details/certifications/";
+
 export const certifications = [
   "Information Technology Specialist, Certiport",
   "Harvard Undergraduate Ventures-TECH Summer Program (HUVTSP)",

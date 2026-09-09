@@ -3,7 +3,13 @@
 import * as React from "react";
 
 import { CoverflowCarousel, type CoverflowSlide } from "@/components/ui/coverflow-carousel";
-import { activities, activityBackdropFor, wideBackdropImages } from "@/lib/content";
+import {
+  activities,
+  activityBackdropFor,
+  activityBackdropScale,
+  tallBackdropImages,
+  wideBackdropImages,
+} from "@/lib/content";
 
 const slides: CoverflowSlide[] = activities.map((a) => ({
   src: a.image,
@@ -49,9 +55,9 @@ type Tile = { src: string; left: number; top: number; width: number; height: num
  * images get extra width so they read as themselves instead of a cropped
  * sliver.
  */
-function collageTiles(backdrop: string[]): Tile[] {
+function collageTiles(backdrop: string[], slug: string): Tile[] {
   const { cols, rows } = gridDims(backdrop.length);
-  const overlap = 1.28;
+  const overlap = activityBackdropScale[slug] ?? 1.28;
   const tiles: Tile[] = [];
   let index = 0;
   for (let row = 0; row < rows && index < backdrop.length; row++) {
@@ -59,12 +65,13 @@ function collageTiles(backdrop: string[]): Tile[] {
     for (let col = 0; col < rowCount; col++) {
       const src = backdrop[index];
       const wide = wideBackdropImages.has(src);
+      const tall = tallBackdropImages.has(src);
       tiles.push({
         src,
         left: ((col + 0.5) / rowCount) * 100,
         top: ((row + 0.5) / rows) * 100,
         width: (100 / rowCount) * overlap * (wide ? 1.6 : 1),
-        height: (100 / rows) * overlap,
+        height: (100 / rows) * overlap * (tall ? 1.6 : 1),
       });
       index++;
     }
@@ -76,7 +83,7 @@ export function ActivitiesSection() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const activeActivity = activities[activeIndex] ?? activities[0];
   const backdrop = activityBackdropFor(activeActivity);
-  const tiles = collageTiles(backdrop);
+  const tiles = collageTiles(backdrop, activeActivity.slug);
 
   return (
     <section

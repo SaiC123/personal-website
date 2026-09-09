@@ -13,7 +13,14 @@ import {
 import { GithubMark, LinkedinMark } from "@/components/icons";
 import { HandwritingText } from "@/components/ui/handwriting-text";
 import { ActivitiesSection } from "@/components/activities-section";
-import { awards, certifications, facts, otherActivities, profile } from "@/lib/content";
+import {
+  awards,
+  certifications,
+  certificationsUrl,
+  facts,
+  otherActivities,
+  profile,
+} from "@/lib/content";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -186,6 +193,23 @@ export default function Home() {
                 <div>
                   <p className="text-sm font-medium text-foreground">{a.event}</p>
                   {a.detail && <p className="text-sm text-muted-foreground">{a.detail}</p>}
+                  {a.description && (
+                    <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
+                      {a.description}
+                    </p>
+                  )}
+                  {a.skills && a.skills.length > 0 && (
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      {a.skills.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-border bg-accent/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -203,7 +227,14 @@ export default function Home() {
                 {certifications.map((c) => (
                   <li key={c} className="flex gap-2">
                     <BadgeCheck className="mt-0.5 size-4 shrink-0 text-brass" />
-                    <span className="text-muted-foreground">{c}</span>
+                    <a
+                      href={certificationsUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-muted-foreground hover:text-teal"
+                    >
+                      {c}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -237,8 +268,8 @@ export default function Home() {
           <div>
             <h2 className="text-3xl font-medium">Let&apos;s talk.</h2>
             <p className="mt-3 max-w-[46ch] text-muted-foreground">
-              Email is the fastest way to reach me. I read everything and I&apos;ll get back to you
-              within a couple of days.
+              Email is the fastest way to reach me. I read everything and I&apos;ll respond within
+              a few hours.
             </p>
             <a
               href={`mailto:${profile.email}`}
