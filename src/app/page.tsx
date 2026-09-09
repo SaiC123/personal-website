@@ -286,31 +286,8 @@ export default function Home() {
               {profile.email}
               <ArrowUpRight className="size-4" />
             </a>
-            <ContactForm email={profile.email} />
           </div>
-          <ul className="grid content-start gap-3">
-            {[
-              { k: "Location", v: profile.location },
-              { k: "GitHub", v: "@SaiC123", href: profile.github },
-              { k: "LinkedIn", v: "/in/sai-chowdarapu", href: profile.linkedin },
-            ].map((row, i) => (
-              <li
-                key={row.k}
-                className={`flex items-baseline justify-between gap-3 pb-3 text-sm ${i !== 0 ? "border-t border-dashed border-border pt-3" : ""}`}
-              >
-                <span className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
-                  {row.k}
-                </span>
-                {row.href ? (
-                  <a href={row.href} target="_blank" rel="noreferrer" className="hover:text-teal">
-                    {row.v}
-                  </a>
-                ) : (
-                  <span>{row.v}</span>
-                )}
-              </li>
-            ))}
-          </ul>
+          <ContactForm email={profile.email} />
         </section>
       </main>
 
