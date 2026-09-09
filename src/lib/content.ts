@@ -11,6 +11,8 @@ export const profile = {
 };
 
 export const facts = [
+  { k: "AP courses", v: "20+" },
+  { k: "Dual enrollment", v: "10+" },
   { k: "Coursework", v: "Georgia Tech · Georgia State · Lanier Tech (4.0)" },
   { k: "SAT", v: "1530 / 1600" },
   { k: "Field", v: "Computer Science / Business" },
