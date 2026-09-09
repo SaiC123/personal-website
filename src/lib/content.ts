@@ -391,11 +391,24 @@ export const activityBackdropBySlug: Record<string, string[]> = {
   piano: [
     "/images/backdrop/piano/piano-1.jpg",
     "/images/backdrop/piano/piano-2.jpg",
+    "/images/backdrop/piano/piano-3.jpg",
+    "/images/backdrop/piano/piano-4.jpg",
+    "/images/backdrop/piano/piano-5.jpg",
+    "/images/backdrop/piano/piano-6.jpg",
   ],
   dance: [
     "/images/backdrop/dance/dance-1.jpg",
     "/images/backdrop/dance/dance-2.jpg",
     "/images/backdrop/dance/dance-3.jpg",
+    "/images/backdrop/dance/dance-4.jpg",
+    "/images/backdrop/dance/dance-5.jpg",
+    "/images/backdrop/dance/dance-6.jpg",
+    "/images/backdrop/dance/dance-7.jpg",
+    "/images/backdrop/dance/dance-8.jpg",
+    "/images/backdrop/dance/dance-9.jpg",
+    "/images/backdrop/dance/dance-10.jpg",
+    "/images/backdrop/dance/dance-11.jpg",
+    "/images/backdrop/dance/dance-12.jpg",
   ],
 };
 
@@ -427,6 +440,7 @@ export const tallBackdropImages = new Set<string>([
 export const activityBackdropScale: Record<string, number> = {
   innovateatl: 1.1,
   "homemore-project": 1.12,
+  lumora: 1.08,
 };
 
 export const awards = [
