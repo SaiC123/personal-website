@@ -2,15 +2,12 @@ import Image from "next/image";
 import {
   ArrowUpRight,
   BadgeCheck,
-  Code2,
   Compass,
   GraduationCap,
   Mail,
   Music2,
   Sparkles,
   Swords,
-  TrendingUp,
-  Users2,
 } from "lucide-react";
 
 import { GithubMark, LinkedinMark } from "@/components/icons";
@@ -24,7 +21,6 @@ import {
   facts,
   otherActivities,
   profile,
-  toolkit,
 } from "@/lib/content";
 
 const slides: CoverflowSlide[] = activities.map((a) => ({
@@ -42,14 +38,7 @@ const slides: CoverflowSlide[] = activities.map((a) => ({
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#activities", label: "Activities" },
-  { href: "#toolkit", label: "Toolkit" },
   { href: "#awards", label: "Awards" },
-];
-
-const toolkitGroups = [
-  { icon: Code2, label: "Technical", items: toolkit.technical },
-  { icon: TrendingUp, label: "Business & strategy", items: toolkit.business },
-  { icon: Users2, label: "Leadership", items: toolkit.leadership },
 ];
 
 const otherActivityIcons: Record<string, typeof Swords> = {
@@ -235,38 +224,6 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-
-        {/* Toolkit */}
-        <section id="toolkit" className="border-b border-border py-10 sm:py-14">
-          <p className="mb-6 font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
-            Toolkit
-          </p>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {toolkitGroups.map((group) => (
-              <div
-                key={group.label}
-                className="rounded-xl border border-border bg-card p-5"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-brass-strong">
-                    <group.icon className="size-4" />
-                  </span>
-                  <p className="font-medium">{group.label}</p>
-                </div>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {group.items.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-border px-2.5 py-1 text-[12.5px] text-foreground/85"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 

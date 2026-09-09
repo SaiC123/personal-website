@@ -105,6 +105,24 @@ export default async function ActivityPage({
                 </li>
               ))}
             </ul>
+
+            {activity.skills.length > 0 && (
+              <div className="mt-8">
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                  Skills used
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {activity.skills.map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full border border-border px-2.5 py-1 text-[12.5px] text-foreground/85"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

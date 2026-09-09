@@ -27,6 +27,7 @@ export type Activity = {
   period: string;
   summary: string;
   bullets: string[];
+  skills: string[];
   image: string;
   imageAlt: string;
 };
@@ -47,6 +48,17 @@ export const activities: Activity[] = [
       "Contributed to 200+ AP scores of 5 among students through structured academic support.",
       "Designed the business, marketing, and pricing strategy that drove client acquisition and revenue growth since launch.",
     ],
+    skills: [
+      "Business strategy",
+      "Pricing strategy",
+      "Marketing",
+      "Client acquisition",
+      "Team leadership",
+      "Canva",
+      "Google Workspace",
+      "Calendly",
+      "Stripe",
+    ],
     image: "/images/equinox.png",
     imageAlt: "Equinox Academy logo",
   },
@@ -63,6 +75,16 @@ export const activities: Activity[] = [
       "Pitched to investors and professionals from Microsoft, Georgetown University, and AWS, securing a $3,500 grant for implementation, alongside 78 hours of community service.",
       "Continuing into a year-long International Leadership Program, developing business-oriented solutions to local problems in Nigeria.",
     ],
+    skills: [
+      "Business plan development",
+      "Financial planning",
+      "Marketing strategy",
+      "Branding",
+      "Investor pitching",
+      "Google Slides",
+      "Excel",
+      "Canva",
+    ],
     image: "/images/leadership-initiatives.jpg",
     imageAlt: "Leadership Initiatives logo",
   },
@@ -77,6 +99,16 @@ export const activities: Activity[] = [
     bullets: [
       "Co-founded a 501(c)(3) nonprofit social media marketing agency serving local businesses and community organizations.",
       "Oversee operations, branding, and client acquisition while managing a creative and outreach team.",
+    ],
+    skills: [
+      "Digital marketing",
+      "Social media strategy",
+      "Branding",
+      "Client acquisition",
+      "Nonprofit operations",
+      "Canva",
+      "Meta Business Suite",
+      "Google Analytics",
     ],
     image: "/images/lumora.webp",
     imageAlt: "Lumora Agency logo",
@@ -93,6 +125,15 @@ export const activities: Activity[] = [
       "Co-founded Pypath to expand access to Python and computer science education for underserved communities.",
       "Grew the program into schools across 9 countries.",
     ],
+    skills: [
+      "Python",
+      "Curriculum design",
+      "Nonprofit operations",
+      "Global program management",
+      "Jupyter Notebook",
+      "GitHub",
+      "Google Classroom",
+    ],
     image: "/images/pypath.png",
     imageAlt: "Pypath logo",
   },
@@ -107,6 +148,15 @@ export const activities: Activity[] = [
     bullets: [
       "Co-founded InnovateATL, a statewide student entrepreneurship competition helping student founders develop, validate, and pitch startup ideas.",
       "Lead operations, outreach, sponsorships, partnerships, and competition execution.",
+    ],
+    skills: [
+      "Operations",
+      "Sponsorships & partnerships",
+      "Event execution",
+      "Outreach",
+      "Notion",
+      "Airtable",
+      "Canva",
     ],
     image: "/images/innovateatl.jpg",
     imageAlt: "InnovateATL logo",
@@ -123,6 +173,7 @@ export const activities: Activity[] = [
       "Build presentations and supporting materials used in funding and grant applications.",
       "Support a nonprofit focused on ending homelessness through housing and outreach programs.",
     ],
+    skills: ["Presentation design", "Grant writing", "Nonprofit support", "Google Slides", "Canva"],
     image: "/images/homemore-project.png",
     imageAlt: "HomeMore Project logo",
   },
@@ -137,6 +188,12 @@ export const activities: Activity[] = [
     bullets: [
       "Process customer deposits, withdrawals, and account transactions.",
       "Learned hands-on retail banking and customer service operations at a community bank.",
+    ],
+    skills: [
+      "Customer service",
+      "Financial transactions",
+      "Retail banking operations",
+      "Point-of-sale systems",
     ],
     image: "/images/citizens-bank.png",
     imageAlt: "Citizens Bank of Georgia logo",
@@ -157,7 +214,6 @@ export const alsoInvolvedIn: { name: string; category: string; note?: string }[]
     category: "Business",
     note: "Financial analyst internship",
   },
-  { name: "AI & ML Club", category: "Tech", note: "Co-President" },
   {
     name: "Trailblazer Robotics",
     category: "Tech",
@@ -196,26 +252,6 @@ export const certifications = [
   "Future of the Business World, Wharton Global Youth Program",
   "Certificate of Achievement, International Leadership & Business Internship, Leadership Initiatives",
 ];
-
-export const toolkit = {
-  technical: ["Python", "Java", "Data analysis", "AI / ML fundamentals", "Canva"],
-  business: [
-    "Business plan development",
-    "Financial forecasting & modeling",
-    "Market & competitor analysis",
-    "Pricing & growth strategy",
-    "Grant writing & fundraising",
-    "SEO & growth marketing",
-  ],
-  leadership: [
-    "Team & curriculum leadership",
-    "Investor pitching",
-    "Client acquisition",
-    "Nonprofit operations",
-    "Public speaking & presentations",
-    "Community outreach",
-  ],
-};
 
 export const otherActivities = [
   { label: "Martial arts", value: "3rd-degree black belt" },
