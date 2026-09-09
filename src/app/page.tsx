@@ -1,8 +1,19 @@
 import Image from "next/image";
-import { ArrowUpRight, Code2, Mail, TrendingUp, Users2 } from "lucide-react";
+import {
+  ArrowUpRight,
+  BadgeCheck,
+  Code2,
+  Compass,
+  GraduationCap,
+  Mail,
+  Music2,
+  Sparkles,
+  Swords,
+  TrendingUp,
+  Users2,
+} from "lucide-react";
 
 import { GithubMark, LinkedinMark } from "@/components/icons";
-import { Separator } from "@/components/ui/separator";
 import { HandwritingText } from "@/components/ui/handwriting-text";
 import { CoverflowCarousel, type CoverflowSlide } from "@/components/ui/coverflow-carousel";
 import {
@@ -40,6 +51,12 @@ const toolkitGroups = [
   { icon: TrendingUp, label: "Business & strategy", items: toolkit.business },
   { icon: Users2, label: "Leadership", items: toolkit.leadership },
 ];
+
+const otherActivityIcons: Record<string, typeof Swords> = {
+  "Martial arts": Swords,
+  Music: Music2,
+  Scouting: Compass,
+};
 
 export default function Home() {
   return (
@@ -258,42 +275,61 @@ export default function Home() {
           <p className="mb-6 font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
             Awards &amp; recognition
           </p>
-          <div className="grid gap-8 sm:grid-cols-[1.2fr_1fr]">
-            <ul className="grid gap-0">
-              {awards.map((a, i) => (
-                <li
-                  key={`${a.event}-${a.detail}`}
-                  className={`flex items-baseline gap-4 py-3 text-sm ${i !== 0 ? "border-t border-dashed border-border" : ""}`}
-                >
-                  <span className="w-16 shrink-0 font-mono text-[13px] text-brass-strong">{a.place}</span>
-                  <span>
-                    {a.event}
-                    {a.detail && <span className="text-muted-foreground"> · {a.detail}</span>}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div className="grid content-start gap-6">
-              <div>
-                <p className="mb-2 text-sm font-medium">Certifications</p>
-                <ul className="grid gap-1.5 text-sm text-muted-foreground">
-                  {certifications.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {awards.map((a) => (
+              <div
+                key={`${a.event}-${a.detail}`}
+                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"
+              >
+                <span className="flex h-9 shrink-0 items-center justify-center rounded-full border border-border bg-accent px-3 font-mono text-[12px] font-semibold text-brass-strong">
+                  {a.place}
+                </span>
+                <div>
+                  <p className="text-sm font-medium text-foreground">{a.event}</p>
+                  {a.detail && <p className="text-sm text-muted-foreground">{a.detail}</p>}
+                </div>
               </div>
-              <Separator />
-              <div>
-                <p className="mb-2 text-sm font-medium">Also</p>
-                <ul className="grid gap-1.5 text-sm text-muted-foreground">
-                  {otherActivities.map((o) => (
-                    <li key={o.label} className="flex justify-between gap-3">
-                      <span>{o.label}</span>
-                      <span className="text-foreground/80">{o.value}</span>
+            ))}
+          </div>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-border bg-card p-5">
+              <div className="flex items-center gap-2.5">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-brass-strong">
+                  <GraduationCap className="size-4" />
+                </span>
+                <p className="font-medium">Certifications</p>
+              </div>
+              <ul className="mt-4 grid gap-2.5 text-sm">
+                {certifications.map((c) => (
+                  <li key={c} className="flex gap-2">
+                    <BadgeCheck className="mt-0.5 size-4 shrink-0 text-brass" />
+                    <span className="text-muted-foreground">{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-5">
+              <div className="flex items-center gap-2.5">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-brass-strong">
+                  <Sparkles className="size-4" />
+                </span>
+                <p className="font-medium">Also</p>
+              </div>
+              <ul className="mt-4 grid gap-3 text-sm">
+                {otherActivities.map((o) => {
+                  const Icon = otherActivityIcons[o.label] ?? Sparkles;
+                  return (
+                    <li key={o.label} className="flex items-center gap-2.5">
+                      <Icon className="size-4 shrink-0 text-brass-strong" />
+                      <span className="text-muted-foreground">{o.label}</span>
+                      <span className="ml-auto font-medium text-foreground">{o.value}</span>
                     </li>
-                  ))}
-                </ul>
-              </div>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </section>
