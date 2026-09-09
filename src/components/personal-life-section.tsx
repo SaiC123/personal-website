@@ -100,6 +100,17 @@ function CollageTile({
   onEnter: () => void;
   onLeave: () => void;
 }) {
+  // Run each tile a bit bigger than its justified slot, pinned to the same
+  // center, so neighbors overlap slightly for a real collage feel - the
+  // slot already matches the photo's own aspect ratio, so the only crop
+  // is this small overlap margin, never the sliver-cropping arbitrary
+  // grid cells caused before.
+  const overlap = 1.1;
+  const w = photo.width * overlap;
+  const h = photo.height * overlap;
+  const left = photo.left + photo.width / 2 - w / 2;
+  const top = photo.top + photo.height / 2 - h / 2;
+
   return (
     <button
       type="button"
@@ -107,10 +118,10 @@ function CollageTile({
       onMouseLeave={onLeave}
       onFocus={onEnter}
       onBlur={onLeave}
-      className={`group absolute overflow-hidden text-left transition-[filter,z-index] duration-200 ${
+      className={`group absolute overflow-hidden text-left shadow-[0_2px_10px_rgba(0,0,0,0.4)] transition-[filter,z-index] duration-200 ${
         active ? "z-10 brightness-110" : "brightness-90 hover:brightness-100"
       }`}
-      style={{ left: photo.left, top: photo.top, width: photo.width, height: photo.height }}
+      style={{ left, top, width: w, height: h }}
     >
       <div
         className="h-full w-full transition-transform duration-150 ease-out"
@@ -200,49 +211,48 @@ export function PersonalLifeSection() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-5xl px-6 pb-10 sm:pb-14">
-          <div
-            ref={containerRef}
-            onMouseMove={handleMove}
-            onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-            className="relative"
-            style={{ height: totalHeight || undefined }}
-          >
-            {laidOut.map((photo, i) => {
-              const depth = ((i % 5) + 1) * 1.5;
-              return (
-                <CollageTile
-                  key={photo.key}
-                  photo={photo}
-                  active={photo.hobby.slug === activeSlug}
-                  parallax={{ x: tilt.x * depth, y: tilt.y * depth }}
-                  onEnter={() => {
-                    setActiveSlug(photo.hobby.slug);
-                    setHoverBox(photo);
-                  }}
-                  onLeave={() => setActiveSlug(null)}
-                />
-              );
-            })}
+        <div
+          ref={containerRef}
+          onMouseMove={handleMove}
+          onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+          className="relative w-full overflow-hidden"
+          style={{ height: totalHeight || undefined }}
+        >
+          {laidOut.map((photo, i) => {
+            const depth = ((i % 5) + 1) * 1.5;
+            return (
+              <CollageTile
+                key={photo.key}
+                photo={photo}
+                active={photo.hobby.slug === activeSlug}
+                parallax={{ x: tilt.x * depth, y: tilt.y * depth }}
+                onEnter={() => {
+                  setActiveSlug(photo.hobby.slug);
+                  setHoverBox(photo);
+                }}
+                onLeave={() => setActiveSlug(null)}
+              />
+            );
+          })}
 
-            <div
-              className={`pointer-events-none absolute z-20 w-[min(320px,80%)] rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${cardPositionClass} ${
-                active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-              }`}
-            >
-              {active && ActiveIcon && (
-                <>
-                  <span className="mb-3 flex size-9 items-center justify-center rounded-full bg-[#4a9eff]/20 text-[#4a9eff]">
-                    <ActiveIcon className="size-4" />
-                  </span>
-                  <h3 className="font-display-alt text-lg font-bold text-white">{active.title}</h3>
-                  <p className="mt-0.5 text-[12px] text-white/50">{active.tagline}</p>
-                  <p className="mt-3 text-[13px] leading-relaxed text-white/80">{active.description}</p>
-                </>
-              )}
-            </div>
+          <div
+            className={`pointer-events-none absolute z-20 w-[min(320px,80%)] rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${cardPositionClass} ${
+              active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+            }`}
+          >
+            {active && ActiveIcon && (
+              <>
+                <span className="mb-3 flex size-9 items-center justify-center rounded-full bg-[#4a9eff]/20 text-[#4a9eff]">
+                  <ActiveIcon className="size-4" />
+                </span>
+                <h3 className="font-display-alt text-lg font-bold text-white">{active.title}</h3>
+                <p className="mt-0.5 text-[12px] text-white/50">{active.tagline}</p>
+                <p className="mt-3 text-[13px] leading-relaxed text-white/80">{active.description}</p>
+              </>
+            )}
           </div>
         </div>
+        <div className="pt-8 sm:pt-10" />
 
         {/* Mobile: hover doesn't apply on touch, so list everything inline below */}
         <div className="mx-auto max-w-5xl px-6 pb-8 sm:hidden">
