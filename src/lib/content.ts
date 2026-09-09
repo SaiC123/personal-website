@@ -219,7 +219,6 @@ export const activities: Activity[] = [
     skills: ["Market research", "Competitive analysis", "Google Slides", "Excel"],
     image: "/images/docubridge-logo.png",
     imageAlt: "Harvard Undergraduate Ventures-TECH Summer Program emblem",
-    document: { label: "Letter of Recommendation (PDF)", href: "/docs/docubridge-lor.pdf" },
   },
   {
     slug: "nriva",
@@ -254,24 +253,20 @@ export const activities: Activity[] = [
       "Worked with instructors to streamline curriculum delivery, improving engagement across all participating classes.",
     ],
     skills: ["Curriculum design", "Team leadership", "Lesson planning"],
-    image:
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Small robotic arm on a workbench",
-    placeholderImage: true,
+    image: "/images/trailblazer-robotics.png",
+    imageAlt: "Trailblazer Robotics flame-and-gear logo",
   },
   {
     slug: "nit-research",
     role: "Researcher",
-    org: "NIT Research",
-    place: "Remote",
+    org: "National Institute of Technology, Warangal",
+    place: "Warangal, India",
     period: "Ongoing",
     summary: "Cybersecurity research.",
     bullets: ["Conducting cybersecurity research."],
     skills: ["Python", "Cybersecurity fundamentals", "Technical writing"],
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Padlock icon over a circuit board, representing cybersecurity",
-    placeholderImage: true,
+    image: "/images/nit-research.jpeg",
+    imageAlt: "National Institute of Technology, Warangal emblem",
   },
   {
     slug: "conduct-flow",
@@ -282,27 +277,8 @@ export const activities: Activity[] = [
     summary: "An AI B2B SaaS project.",
     bullets: ["Building an AI-powered B2B SaaS product."],
     skills: ["Python", "Product development", "Figma"],
-    image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Code displayed on a screen",
-    placeholderImage: true,
-  },
-  {
-    slug: "fbla",
-    role: "Member",
-    org: "FBLA (Future Business Leaders of America)",
-    place: "Atlanta, Georgia",
-    period: "Aug 2023 - Present",
-    summary:
-      "Member of FBLA, competing in business events at the state and national level.",
-    bullets: [
-      "Placed 2nd (Intro to Social Media Strategy) and 3rd (Data Analysis, Community Service Project) at FBLA State Leadership Conference.",
-    ],
-    skills: ["Public speaking", "Business analysis"],
-    image:
-      "https://images.unsplash.com/photo-1552581234-26160f608093?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Team meeting around a table",
-    placeholderImage: true,
+    image: "/images/conduct-flow.png",
+    imageAlt: "Conduct Flow logo",
   },
   {
     slug: "cafcap",
@@ -318,10 +294,8 @@ export const activities: Activity[] = [
       "Featured in TiE Atlanta's Pitch Showcase.",
     ],
     skills: ["Product development", "Pitching", "Market research"],
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Team collaborating with hands together",
-    placeholderImage: true,
+    image: "/images/cafcap.jpeg",
+    imageAlt: "TiE Atlanta logo",
   },
   {
     slug: "piano",
@@ -340,7 +314,7 @@ export const activities: Activity[] = [
   {
     slug: "dance",
     role: "Dancer",
-    org: "Dance (Bollywood)",
+    org: "Shiv's Institute of Dance",
     place: "Atlanta, Georgia",
     period: "Ongoing",
     summary:
@@ -351,11 +325,23 @@ export const activities: Activity[] = [
       "Taught dance classes.",
     ],
     skills: ["Choreography", "Performance"],
-    image:
-      "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=900&h=900&fit=crop&q=70&auto=format",
-    imageAlt: "Dancer in motion",
-    placeholderImage: true,
+    image: "/images/dance.jpeg",
+    imageAlt: "Shiv's Institute of Dance logo",
   },
+];
+
+// Backdrop collage behind the Activities carousel, heavily blurred so it
+// reads as ambient texture, not content. Placeholder stock photos until
+// real photos come in to replace them.
+export const activityBackdrop: string[] = [
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1552056776-9b5657118ca4?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=600&h=600&fit=crop&q=60&auto=format",
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=600&fit=crop&q=60&auto=format",
 ];
 
 export const awards = [

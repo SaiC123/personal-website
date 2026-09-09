@@ -15,6 +15,7 @@ import { HandwritingText } from "@/components/ui/handwriting-text";
 import { CoverflowCarousel, type CoverflowSlide } from "@/components/ui/coverflow-carousel";
 import {
   activities,
+  activityBackdrop,
   awards,
   certifications,
   facts,
@@ -185,23 +186,47 @@ export default function Home() {
         </section>
 
         {/* Activities */}
-        <section id="activities" className="border-b border-border py-10 sm:py-14">
-          <div className="mb-6 flex items-baseline justify-between gap-4">
-            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
-              Activities
-            </p>
-            <span className="font-mono text-[12px] text-muted-foreground">
-              {activities.length}
-            </span>
+        <section
+          id="activities"
+          className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-border py-10 sm:py-14"
+        >
+          <div aria-hidden className="absolute inset-0 -z-10">
+            <div
+              className="grid h-full grid-cols-4 sm:grid-cols-6"
+              style={{ filter: "blur(22px) saturate(0.85)", transform: "scale(1.15)" }}
+            >
+              {Array.from({ length: 18 }).map((_, i) => (
+                <div key={i} className="relative aspect-square overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={activityBackdrop[i % activityBackdrop.length]}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="absolute inset-0 bg-background/85" />
           </div>
 
-          <CoverflowCarousel
-            slides={slides}
-            showCaption
-            showNavigation
-            showPagination
-            label="Activities"
-          />
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="mb-6 flex items-baseline justify-between gap-4">
+              <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
+                Activities
+              </p>
+              <span className="font-mono text-[12px] text-muted-foreground">
+                {activities.length}
+              </span>
+            </div>
+
+            <CoverflowCarousel
+              slides={slides}
+              showCaption
+              showNavigation
+              showPagination
+              label="Activities"
+            />
+          </div>
         </section>
 
         {/* Awards */}
