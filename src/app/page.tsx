@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Code2, Mail, TrendingUp, Users2 } from "lucide-react";
 
 import { GithubMark, LinkedinMark } from "@/components/icons";
 import { Separator } from "@/components/ui/separator";
@@ -33,6 +33,12 @@ const navLinks = [
   { href: "#activities", label: "Activities" },
   { href: "#toolkit", label: "Toolkit" },
   { href: "#awards", label: "Awards" },
+];
+
+const toolkitGroups = [
+  { icon: Code2, label: "Technical", items: toolkit.technical },
+  { icon: TrendingUp, label: "Business & strategy", items: toolkit.business },
+  { icon: Users2, label: "Leadership", items: toolkit.leadership },
 ];
 
 export default function Home() {
@@ -220,37 +226,30 @@ export default function Home() {
           <p className="mb-6 font-mono text-[12px] uppercase tracking-[0.14em] text-muted-foreground">
             Toolkit
           </p>
-          <div className="grid gap-6 sm:grid-cols-3">
-            <div>
-              <p className="mb-3 text-sm font-medium">Technical</p>
-              <ul className="grid gap-2 text-sm text-muted-foreground">
-                {toolkit.technical.map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <span className="size-1.5 shrink-0 bg-brass" /> {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="mb-3 text-sm font-medium">Business &amp; strategy</p>
-              <ul className="grid gap-2 text-sm text-muted-foreground">
-                {toolkit.business.map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <span className="size-1.5 shrink-0 bg-brass" /> {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="mb-3 text-sm font-medium">Leadership</p>
-              <ul className="grid gap-2 text-sm text-muted-foreground">
-                {toolkit.leadership.map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <span className="size-1.5 shrink-0 bg-brass" /> {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {toolkitGroups.map((group) => (
+              <div
+                key={group.label}
+                className="rounded-xl border border-border bg-card p-5"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-brass-strong">
+                    <group.icon className="size-4" />
+                  </span>
+                  <p className="font-medium">{group.label}</p>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {group.items.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-border px-2.5 py-1 text-[12.5px] text-foreground/85"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

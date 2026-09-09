@@ -199,9 +199,23 @@ export const certifications = [
 ];
 
 export const toolkit = {
-  technical: ["Python", "Java", "Canva"],
-  business: ["Financial forecasting & modeling", "Market & competitor analysis", "Pricing & growth strategy"],
-  leadership: ["Team & curriculum leadership", "Investor pitching", "Client acquisition"],
+  technical: ["Python", "Java", "Data analysis", "AI / ML fundamentals", "Canva"],
+  business: [
+    "Business plan development",
+    "Financial forecasting & modeling",
+    "Market & competitor analysis",
+    "Pricing & growth strategy",
+    "Grant writing & fundraising",
+    "SEO & growth marketing",
+  ],
+  leadership: [
+    "Team & curriculum leadership",
+    "Investor pitching",
+    "Client acquisition",
+    "Nonprofit operations",
+    "Public speaking & presentations",
+    "Community outreach",
+  ],
 };
 
 export const otherActivities = [
