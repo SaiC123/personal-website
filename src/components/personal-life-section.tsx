@@ -47,22 +47,55 @@ const GAP = 4;
  * grouped by hobby, each hobby's photos land in the same or neighboring
  * rows without needing to force hard breaks between hobbies.
  */
+const MAX_ROW_SCALE = 1.35;
+
 function justify(photos: FlatPhoto[], containerWidth: number, targetHeight: number): LaidOutPhoto[] {
   if (containerWidth <= 0 || photos.length === 0) return [];
 
-  const out: LaidOutPhoto[] = [];
+  // Pass 1: greedy row grouping - fill a row until its natural width at the
+  // target height would reach the container width.
+  const rows: FlatPhoto[][] = [];
   let row: FlatPhoto[] = [];
   let aspectSum = 0;
-  let top = 0;
+  for (const photo of photos) {
+    row.push(photo);
+    aspectSum += photo.aspect;
+    const widthAtTarget = aspectSum * targetHeight + GAP * (row.length - 1);
+    if (widthAtTarget >= containerWidth) {
+      rows.push(row);
+      row = [];
+      aspectSum = 0;
+    }
+  }
+  if (row.length > 0) rows.push(row);
 
-  const flushRow = (items: FlatPhoto[], isLastRow: boolean) => {
-    if (items.length === 0) return;
+  const scaleOf = (items: FlatPhoto[]) => {
     const sum = items.reduce((s, p) => s + p.aspect, 0);
     const gapsWidth = GAP * (items.length - 1);
-    const naturalWidth = sum * targetHeight;
-    let scale = (containerWidth - gapsWidth) / naturalWidth;
-    if (isLastRow) scale = Math.min(scale, 1.25);
-    const rowHeight = targetHeight * scale;
+    return (containerWidth - gapsWidth) / (sum * targetHeight);
+  };
+
+  // Pass 2: a trailing row with too few photos would otherwise need a huge
+  // stretch to reach the container's edges, leaving empty space if capped
+  // or blowing photos up if not. Borrow photos from the row before it until
+  // it's reasonably full - and since that can leave the row it borrowed
+  // from too sparse in turn, walk backward through every row so the fix
+  // cascades instead of just relocating the gap by one row.
+  for (let i = rows.length - 1; i >= 1; i--) {
+    let guard = 0;
+    while (scaleOf(rows[i]) > MAX_ROW_SCALE && rows[i - 1].length > 1 && guard < 50) {
+      const moved = rows[i - 1].pop();
+      if (!moved) break;
+      rows[i].unshift(moved);
+      guard++;
+    }
+  }
+
+  // Pass 3: compute final pixel geometry now that row membership is set.
+  const out: LaidOutPhoto[] = [];
+  let top = 0;
+  for (const items of rows) {
+    const rowHeight = targetHeight * scaleOf(items);
     let left = 0;
     for (const p of items) {
       const width = p.aspect * rowHeight;
@@ -70,19 +103,7 @@ function justify(photos: FlatPhoto[], containerWidth: number, targetHeight: numb
       left += width + GAP;
     }
     top += rowHeight + GAP;
-  };
-
-  for (const photo of photos) {
-    row.push(photo);
-    aspectSum += photo.aspect;
-    const widthAtTarget = aspectSum * targetHeight + GAP * (row.length - 1);
-    if (widthAtTarget >= containerWidth) {
-      flushRow(row, false);
-      row = [];
-      aspectSum = 0;
-    }
   }
-  flushRow(row, true);
 
   return out;
 }
@@ -182,19 +203,24 @@ export function PersonalLifeSection() {
     setTilt({ x: px * 1.4, y: py * 1.4 });
   };
 
-  // Float the detail card in whichever corner is farthest from the tile
-  // being hovered, so it never sits on top of the picture itself.
-  const cardCorner =
-    hoverBox && containerWidth > 0
-      ? {
-          vertical: hoverBox.top + hoverBox.height / 2 < totalHeight / 2 ? "bottom" : "top",
-          horizontal: hoverBox.left + hoverBox.width / 2 < containerWidth / 2 ? "right" : "left",
-        }
-      : { vertical: "bottom", horizontal: "right" };
-
-  const cardPositionClass = `${cardCorner.vertical === "top" ? "top-4" : "bottom-4"} ${
-    cardCorner.horizontal === "left" ? "left-4" : "right-4"
-  }`;
+  // Float the detail card right next to whichever tile is hovered - just
+  // outside it on whichever side has more room - instead of jumping to a
+  // far corner of the whole collage, so it reads as "about this picture"
+  // rather than a separate thing happening elsewhere on the page.
+  const CARD_WIDTH = 280;
+  const CARD_HEIGHT = 190;
+  const CARD_MARGIN = 14;
+  const cardPos = (() => {
+    if (!hoverBox || containerWidth <= 0) return { left: 0, top: 0 };
+    const putLeft = hoverBox.left + hoverBox.width / 2 > containerWidth / 2;
+    let left = putLeft
+      ? hoverBox.left - CARD_MARGIN - CARD_WIDTH
+      : hoverBox.left + hoverBox.width + CARD_MARGIN;
+    left = Math.max(8, Math.min(left, containerWidth - CARD_WIDTH - 8));
+    let top = hoverBox.top + hoverBox.height / 2 - CARD_HEIGHT / 2;
+    top = Math.max(8, Math.min(top, totalHeight - CARD_HEIGHT - 8));
+    return { left, top };
+  })();
 
   return (
     <section
@@ -236,9 +262,10 @@ export function PersonalLifeSection() {
           })}
 
           <div
-            className={`pointer-events-none absolute z-20 w-[min(320px,80%)] rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${cardPositionClass} ${
+            className={`pointer-events-none absolute z-20 rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${
               active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
             }`}
+            style={{ left: cardPos.left, top: cardPos.top, width: CARD_WIDTH }}
           >
             {active && ActiveIcon && (
               <>
