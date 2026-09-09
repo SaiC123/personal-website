@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileText } from "lucide-react";
 
 import { activities, profile } from "@/lib/content";
 
@@ -121,6 +121,29 @@ export default async function ActivityPage({
                     </span>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {activity.document && (
+              <a
+                href={activity.document.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors hover:border-brass hover:bg-accent"
+              >
+                <FileText className="size-4" />
+                {activity.document.label}
+              </a>
+            )}
+
+            {activity.extraImage && (
+              <div className="mt-8 overflow-hidden rounded-xl border border-border bg-card">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={activity.extraImage}
+                  alt={activity.extraImageAlt ?? ""}
+                  className="w-full object-contain"
+                />
               </div>
             )}
           </div>

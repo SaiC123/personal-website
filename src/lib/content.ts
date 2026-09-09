@@ -30,6 +30,11 @@ export type Activity = {
   skills: string[];
   image: string;
   imageAlt: string;
+  /** True stock/placeholder photo, not a real photo or logo yet. */
+  placeholderImage?: boolean;
+  extraImage?: string;
+  extraImageAlt?: string;
+  document?: { label: string; href: string };
 };
 
 // Featured activities, chosen for having a concrete role, a measurable
@@ -198,70 +203,158 @@ export const activities: Activity[] = [
     image: "/images/citizens-bank.png",
     imageAlt: "Citizens Bank of Georgia logo",
   },
-];
-
-// Everything else: real involvement, no full card yet (either not requested
-// as featured, or, for Home More Project and the bank job, still missing
-// real dates since neither is on LinkedIn).
-export const alsoInvolvedIn: {
-  name: string;
-  category: string;
-  note?: string;
-  skills?: string[];
-}[] = [
   {
-    name: "DocuBridge (HUVTSP)",
-    category: "Business",
-    note: "Business development internship, Harvard summer program",
+    slug: "docubridge",
+    role: "Strategy & Business Development Intern",
+    org: "DocuBridge (HUVTSP)",
+    place: "Remote",
+    period: "Jun 2025 - Jul 2025",
+    summary:
+      "Analyzed 30+ AI-finance startups to develop market segmentation, SWOT analysis, and product recommendations for DocuBridge's go-to-market strategy.",
+    bullets: [
+      "Analyzed 30+ AI-finance startups and established players, researching generative AI applications, market trends, customer needs, and competitive positioning.",
+      "Developed market segmentation, a SWOT analysis, and product recommendations supporting DocuBridge's go-to-market strategy.",
+      "Built a visual market map and feature matrix comparing DocuBridge to competitors, identifying 5 key differentiation areas.",
+    ],
     skills: ["Market research", "Competitive analysis", "Google Slides", "Excel"],
+    image: "/images/docubridge-logo.png",
+    imageAlt: "Harvard Undergraduate Ventures-TECH Summer Program emblem",
+    document: { label: "Letter of Recommendation (PDF)", href: "/docs/docubridge-lor.pdf" },
   },
   {
-    name: "NRIVA Business & Finance Internship",
-    category: "Business",
-    note: "Financial analyst internship",
+    slug: "nriva",
+    role: "Business & Finance Analyst",
+    org: "NRIVA Business and Finance Internship",
+    place: "St. Louis, Missouri",
+    period: "May 2024 - Aug 2024",
+    summary:
+      "Completed hands-on entrepreneurship and financial-analysis projects, building a financial forecasting model that improved profit-projection accuracy by 20%.",
+    bullets: [
+      "Completed 5+ hands-on projects in entrepreneurship and financial analysis, producing business models and presentations evaluated by finance professionals.",
+      "Developed a comprehensive startup business plan with revenue projections, cost structures, and break-even analysis, presented to a panel of 6 executives.",
+      "Built a financial forecasting model that improved profit projection accuracy by 20%, enhancing strategic decision-making in simulation exercises.",
+    ],
     skills: ["Financial modeling", "Excel", "Business planning"],
+    image: "/images/nriva-logo.jpeg",
+    imageAlt: "NRIVA logo",
+    extraImage: "/images/nriva-extra.png",
+    extraImageAlt: "Financial model built during the NRIVA internship",
   },
   {
-    name: "Trailblazer Robotics",
-    category: "Tech",
-    note: "Program lead, STEM for preschoolers",
+    slug: "trailblazer-robotics",
+    role: "Program Lead",
+    org: "Trailblazer Robotics",
+    place: "Alpharetta, Georgia",
+    period: "Oct 2025 - Present",
+    summary:
+      "Designed and lead the STEM curriculum for a robotics program serving 20+ preschool students.",
+    bullets: [
+      "Lead robotics education sessions for 20+ preschool students, introducing foundational STEM and problem-solving concepts through interactive projects.",
+      "Designed age-appropriate lesson plans that built students' creativity, logical reasoning, and teamwork.",
+      "Worked with instructors to streamline curriculum delivery, improving engagement across all participating classes.",
+    ],
     skills: ["Curriculum design", "Team leadership", "Lesson planning"],
+    image:
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Small robotic arm on a workbench",
+    placeholderImage: true,
   },
   {
-    name: "NIT Research",
-    category: "Research",
-    note: "Cybersecurity research",
+    slug: "nit-research",
+    role: "Researcher",
+    org: "NIT Research",
+    place: "Remote",
+    period: "Ongoing",
+    summary: "Cybersecurity research.",
+    bullets: ["Conducting cybersecurity research."],
     skills: ["Python", "Cybersecurity fundamentals", "Technical writing"],
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Padlock icon over a circuit board, representing cybersecurity",
+    placeholderImage: true,
   },
   {
-    name: "Conduct Flow",
-    category: "Project",
-    note: "AI B2B SaaS project",
+    slug: "conduct-flow",
+    role: "Creator",
+    org: "Conduct Flow",
+    place: "Remote",
+    period: "Ongoing",
+    summary: "An AI B2B SaaS project.",
+    bullets: ["Building an AI-powered B2B SaaS product."],
     skills: ["Python", "Product development", "Figma"],
+    image:
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Code displayed on a screen",
+    placeholderImage: true,
   },
   {
-    name: "FBLA",
-    category: "Competition",
-    note: "3x state placement",
+    slug: "fbla",
+    role: "Member",
+    org: "FBLA (Future Business Leaders of America)",
+    place: "Atlanta, Georgia",
+    period: "Aug 2023 - Present",
+    summary:
+      "Member of FBLA, competing in business events at the state and national level.",
+    bullets: [
+      "Placed 2nd (Intro to Social Media Strategy) and 3rd (Data Analysis, Community Service Project) at FBLA State Leadership Conference.",
+    ],
     skills: ["Public speaking", "Business analysis"],
+    image:
+      "https://images.unsplash.com/photo-1552581234-26160f608093?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Team meeting around a table",
+    placeholderImage: true,
   },
   {
-    name: "CafCap (TiE Atlanta)",
-    category: "Competition",
-    note: "Co-creator, pitch showcase",
+    slug: "cafcap",
+    role: "Co-Creator",
+    org: "CafCap (TiE Atlanta)",
+    place: "Atlanta, Georgia",
+    period: "Oct 2023 - Apr 2024",
+    summary:
+      "Co-created CafCap through the TiE Atlanta Entrepreneurship Program, selected as the team's MVP and featured in the Pitch Showcase.",
+    bullets: [
+      "Co-created CafCap, contributing to product development, market research, business strategy, and pitching.",
+      "Selected as the team's MVP for leadership and contribution.",
+      "Featured in TiE Atlanta's Pitch Showcase.",
+    ],
     skills: ["Product development", "Pitching", "Market research"],
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Team collaborating with hands together",
+    placeholderImage: true,
   },
   {
-    name: "Piano",
-    category: "Arts",
-    note: "Guild and ABRSM certified",
+    slug: "piano",
+    role: "Pianist",
+    org: "Piano",
+    place: "Atlanta, Georgia",
+    period: "Ongoing",
+    summary: "College-level pianist, certified through the Guild and ABRSM.",
+    bullets: ["College-level pianist.", "Certified through the Guild and ABRSM."],
     skills: ["Music theory", "Performance"],
+    image:
+      "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Close-up of piano keys",
+    placeholderImage: true,
   },
   {
-    name: "Dance",
-    category: "Arts",
-    note: "Bollywood dancer, 30+ performances, background dancer at 3 concerts, taught classes",
+    slug: "dance",
+    role: "Dancer",
+    org: "Dance (Bollywood)",
+    place: "Atlanta, Georgia",
+    period: "Ongoing",
+    summary:
+      "Bollywood dancer with 30+ performances, including background dancing at 3 concerts and teaching classes.",
+    bullets: [
+      "30+ performances.",
+      "Background dancer at 3 concerts.",
+      "Taught dance classes.",
+    ],
     skills: ["Choreography", "Performance"],
+    image:
+      "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=900&h=900&fit=crop&q=70&auto=format",
+    imageAlt: "Dancer in motion",
+    placeholderImage: true,
   },
 ];
 
