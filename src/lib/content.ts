@@ -383,6 +383,13 @@ export function activityBackdropFor(activity: Activity): string[] {
   return activityBackdropBySlug[activity.slug] ?? [activity.image];
 }
 
+// Unusually wide source images (banner logos, etc.) that need extra width
+// in the backdrop collage so they don't get cropped down to a sliver.
+export const wideBackdropImages = new Set<string>([
+  "/images/backdrop/lumora/lumora-1.jpg",
+  "/images/backdrop/pypath/pypath-2.jpg",
+]);
+
 export const awards = [
   { place: "1st", event: "TSA National Leadership Conference", detail: "Software Development" },
   { place: "2nd", event: "FBLA State Leadership Conference", detail: "Intro to Social Media Strategy" },

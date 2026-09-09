@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { CoverflowCarousel, type CoverflowSlide } from "@/components/ui/coverflow-carousel";
-import { activities, activityBackdropFor } from "@/lib/content";
+import { activities, activityBackdropFor, wideBackdropImages } from "@/lib/content";
 
 const slides: CoverflowSlide[] = activities.map((a) => ({
   src: a.image,
@@ -37,11 +37,37 @@ function gridDims(count: number, targetAspect = 2.2): { cols: number; rows: numb
   return { cols: best.cols, rows: best.rows };
 }
 
+type Tile = { src: string; left: number; top: number; width: number; height: number };
+
+/**
+ * Lays photos out as an overlapping collage instead of a strict grid: each
+ * tile is sized bigger than its bare share of the space, so neighbors
+ * overlap slightly and there's never a gap, even when the photo count
+ * doesn't divide evenly. Unusually wide source images get extra width so
+ * they read as themselves instead of a cropped sliver.
+ */
+function collageTiles(backdrop: string[]): Tile[] {
+  const { cols, rows } = gridDims(backdrop.length);
+  const overlap = 1.28;
+  return backdrop.map((src, i) => {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const wide = wideBackdropImages.has(src);
+    return {
+      src,
+      left: ((col + 0.5) / cols) * 100,
+      top: ((row + 0.5) / rows) * 100,
+      width: (100 / cols) * overlap * (wide ? 1.6 : 1),
+      height: (100 / rows) * overlap,
+    };
+  });
+}
+
 export function ActivitiesSection() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const activeActivity = activities[activeIndex] ?? activities[0];
   const backdrop = activityBackdropFor(activeActivity);
-  const { cols, rows } = gridDims(backdrop.length);
+  const tiles = collageTiles(backdrop);
 
   return (
     <section
@@ -51,18 +77,23 @@ export function ActivitiesSection() {
       <div aria-hidden className="absolute inset-0 -z-10">
         <div
           key={activeActivity.slug}
-          className="grid h-full duration-700 animate-in fade-in"
-          style={{
-            filter: "blur(5px) saturate(0.95)",
-            transform: "scale(1.08)",
-            gridTemplateColumns: `repeat(${cols}, 1fr)`,
-            gridTemplateRows: `repeat(${rows}, 1fr)`,
-          }}
+          className="relative h-full w-full duration-700 animate-in fade-in"
+          style={{ filter: "blur(5px) saturate(0.95)", transform: "scale(1.04)" }}
         >
-          {backdrop.map((src) => (
-            <div key={src} className="relative overflow-hidden">
+          {tiles.map((tile) => (
+            <div
+              key={tile.src}
+              className="absolute overflow-hidden"
+              style={{
+                left: `${tile.left}%`,
+                top: `${tile.top}%`,
+                width: `${tile.width}%`,
+                height: `${tile.height}%`,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="" className="h-full w-full object-cover" />
+              <img src={tile.src} alt="" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>
