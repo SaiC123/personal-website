@@ -509,7 +509,18 @@ export type Hobby = {
   title: string;
   tagline: string;
   description: string;
-  icon: "piano" | "dance" | "valorant" | "fortnite" | "naruto" | "himym" | "scouts" | "friends" | "concerts";
+  icon:
+    | "piano"
+    | "dance"
+    | "valorant"
+    | "fortnite"
+    | "naruto"
+    | "himym"
+    | "scouts"
+    | "friends"
+    | "concerts"
+    | "car"
+    | "starbucks";
   /** Real photos for this tile. Empty means it's using the icon treatment for now. */
   photos: string[];
 };
@@ -628,5 +639,27 @@ export const hobbies: Hobby[] = [
       "/images/personal/concerts/concerts-4.jpg",
       "/images/personal/concerts/concerts-5.jpg",
     ],
+  },
+  {
+    slug: "car",
+    title: "Car",
+    tagline: "2010 Mustang GT, manual, my first car",
+    description:
+      "My 2010 Mustang GT is my first car and still my daily driver. It's a manual, and I recently swapped in a custom screen myself.",
+    icon: "car",
+    photos: [
+      "/images/personal/car/car-1.jpg",
+      "/images/personal/car/car-2.jpg",
+      "/images/personal/car/car-3.jpg",
+    ],
+  },
+  {
+    slug: "starbucks",
+    title: "Starbucks",
+    tagline: "Top 1% visitor, some days for 9+ hours",
+    description:
+      "I go to my local Starbucks pretty much every day, sometimes for 9+ hours at a stretch, usually working alongside friends like Vihaan and Sarosh. I'm apparently a Top 1% visitor there.",
+    icon: "starbucks",
+    photos: ["/images/personal/starbucks.jpg"],
   },
 ];

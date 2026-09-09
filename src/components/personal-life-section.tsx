@@ -11,6 +11,8 @@ import {
   Compass,
   Users,
   Mic2,
+  Car,
+  Coffee,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,6 +29,8 @@ const hobbyIcons: Record<Hobby["icon"], LucideIcon> = {
   scouts: Compass,
   friends: Users,
   concerts: Mic2,
+  car: Car,
+  starbucks: Coffee,
 };
 
 type Rect = { x: number; y: number; w: number; h: number };
