@@ -203,35 +203,65 @@ export const activities: Activity[] = [
 // Everything else: real involvement, no full card yet (either not requested
 // as featured, or, for Home More Project and the bank job, still missing
 // real dates since neither is on LinkedIn).
-export const alsoInvolvedIn: { name: string; category: string; note?: string }[] = [
+export const alsoInvolvedIn: {
+  name: string;
+  category: string;
+  note?: string;
+  skills?: string[];
+}[] = [
   {
     name: "DocuBridge (HUVTSP)",
     category: "Business",
     note: "Business development internship, Harvard summer program",
+    skills: ["Market research", "Competitive analysis", "Google Slides", "Excel"],
   },
   {
     name: "NRIVA Business & Finance Internship",
     category: "Business",
     note: "Financial analyst internship",
+    skills: ["Financial modeling", "Excel", "Business planning"],
   },
   {
     name: "Trailblazer Robotics",
     category: "Tech",
     note: "Program lead, STEM for preschoolers",
+    skills: ["Curriculum design", "Team leadership", "Lesson planning"],
   },
-  { name: "NIT Research", category: "Research", note: "Cybersecurity research" },
-  { name: "Conduct Flow", category: "Project", note: "AI B2B SaaS project" },
-  { name: "FBLA", category: "Competition", note: "3x state placement" },
+  {
+    name: "NIT Research",
+    category: "Research",
+    note: "Cybersecurity research",
+    skills: ["Python", "Cybersecurity fundamentals", "Technical writing"],
+  },
+  {
+    name: "Conduct Flow",
+    category: "Project",
+    note: "AI B2B SaaS project",
+    skills: ["Python", "Product development", "Figma"],
+  },
+  {
+    name: "FBLA",
+    category: "Competition",
+    note: "3x state placement",
+    skills: ["Public speaking", "Business analysis"],
+  },
   {
     name: "CafCap (TiE Atlanta)",
     category: "Competition",
     note: "Co-creator, pitch showcase",
+    skills: ["Product development", "Pitching", "Market research"],
   },
-  { name: "Piano", category: "Arts", note: "Guild and ABRSM certified" },
+  {
+    name: "Piano",
+    category: "Arts",
+    note: "Guild and ABRSM certified",
+    skills: ["Music theory", "Performance"],
+  },
   {
     name: "Dance",
     category: "Arts",
     note: "Bollywood dancer, 30+ performances, background dancer at 3 concerts, taught classes",
+    skills: ["Choreography", "Performance"],
   },
 ];
 

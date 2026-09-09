@@ -212,15 +212,29 @@ export default function Home() {
               {alsoInvolvedIn.map((item, i) => (
                 <li
                   key={item.name}
-                  className={`flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 text-sm ${i !== 0 ? "border-t border-dashed border-border" : ""}`}
+                  className={`py-3 text-sm ${i !== 0 ? "border-t border-dashed border-border" : ""}`}
                 >
-                  <span className="w-24 shrink-0 font-mono text-[11px] uppercase tracking-wide text-brass-strong">
-                    {item.category}
-                  </span>
-                  <span>
-                    <span className="font-medium text-foreground">{item.name}</span>
-                    {item.note && <span className="text-muted-foreground"> · {item.note}</span>}
-                  </span>
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                    <span className="w-24 shrink-0 font-mono text-[11px] uppercase tracking-wide text-brass-strong">
+                      {item.category}
+                    </span>
+                    <span>
+                      <span className="font-medium text-foreground">{item.name}</span>
+                      {item.note && <span className="text-muted-foreground"> · {item.note}</span>}
+                    </span>
+                  </div>
+                  {item.skills && item.skills.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1.5 sm:pl-28">
+                      {item.skills.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-border px-2.5 py-0.5 text-[11.5px] text-foreground/80"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
