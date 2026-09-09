@@ -4,8 +4,7 @@ import * as React from "react";
 import {
   Piano,
   Music2,
-  Crosshair,
-  Pickaxe,
+  Gamepad2,
   Sparkles,
   Tv,
   Compass,
@@ -14,6 +13,7 @@ import {
   Car,
   Coffee,
   ChefHat,
+  Film,
   type LucideIcon,
 } from "lucide-react";
 
@@ -23,8 +23,7 @@ import { hobbies, type Hobby } from "@/lib/content";
 const hobbyIcons: Record<Hobby["icon"], LucideIcon> = {
   piano: Piano,
   dance: Music2,
-  valorant: Crosshair,
-  fortnite: Pickaxe,
+  videogames: Gamepad2,
   naruto: Sparkles,
   himym: Tv,
   scouts: Compass,
@@ -33,9 +32,10 @@ const hobbyIcons: Record<Hobby["icon"], LucideIcon> = {
   car: Car,
   starbucks: Coffee,
   food: ChefHat,
+  anime: Film,
 };
 
-type FlatPhoto = { key: string; hobby: Hobby; src: string; aspect: number };
+type FlatPhoto = { key: string; hobby: Hobby; src: string | null; aspect: number };
 type LaidOutPhoto = FlatPhoto & { width: number; height: number; top: number; left: number };
 
 const GAP = 4;
@@ -134,6 +134,8 @@ function CollageTile({
   const left = photo.left + photo.width / 2 - w / 2;
   const top = photo.top + photo.height / 2 - h / 2;
 
+  const Icon = hobbyIcons[photo.hobby.icon];
+
   return (
     <button
       type="button"
@@ -146,13 +148,22 @@ function CollageTile({
       }`}
       style={{ left, top, width: w, height: h }}
     >
-      <div
-        className="h-full w-full transition-transform duration-150 ease-out"
-        style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={photo.src} alt="" className="h-full w-full object-cover" />
-      </div>
+      {photo.src ? (
+        <div
+          className="h-full w-full transition-transform duration-150 ease-out"
+          style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={photo.src} alt="" className="h-full w-full object-cover" />
+        </div>
+      ) : (
+        <div
+          className="flex h-full w-full items-center justify-center bg-[#14161a] transition-transform duration-150 ease-out"
+          style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
+        >
+          <Icon className={`size-6 transition-colors duration-300 sm:size-8 ${active ? "text-[#4a9eff]" : "text-white/30"}`} />
+        </div>
+      )}
       <div
         className={`pointer-events-none absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
           active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/0 ring-black/25"
@@ -182,7 +193,7 @@ export function PersonalLifeSection() {
   const flat = React.useMemo<FlatPhoto[]>(
     () =>
       hobbies.flatMap((h) =>
-        h.photos.map((p, i) => ({ key: `${h.slug}-${i}`, hobby: h, src: p.src, aspect: p.aspect })),
+        h.photos.map((p, i) => ({ key: `${h.slug}-${i}`, hobby: h, src: p.src as string | null, aspect: p.aspect })),
       ),
     [],
   );

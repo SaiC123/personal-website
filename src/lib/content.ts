@@ -511,8 +511,7 @@ export type Hobby = {
   icon:
     | "piano"
     | "dance"
-    | "valorant"
-    | "fortnite"
+    | "videogames"
     | "naruto"
     | "himym"
     | "scouts"
@@ -520,7 +519,8 @@ export type Hobby = {
     | "concerts"
     | "car"
     | "starbucks"
-    | "food";
+    | "food"
+    | "anime";
   /**
    * Real photos for this tile, each with its own width/height aspect ratio
    * (width / height) so the collage can lay them out like a justified photo
@@ -571,22 +571,13 @@ export const hobbies: Hobby[] = [
     ],
   },
   {
-    slug: "valorant",
-    title: "Valorant",
-    tagline: "Tactical FPS, my main competitive game",
+    slug: "videogames",
+    title: "Video Games",
+    tagline: "Currently Valorant (Diamond)",
     description:
-      "My go-to when I want something competitive and locked-in. Photos coming soon.",
-    icon: "valorant",
-    photos: [],
-  },
-  {
-    slug: "fortnite",
-    title: "Fortnite",
-    tagline: "The more casual, chaotic pick",
-    description:
-      "Less serious than Valorant, more about squading up with friends. Photos coming soon.",
-    icon: "fortnite",
-    photos: [],
+      "I currently play Valorant and I'm Diamond rank. Grew up on Rocket League, Fortnite, and Minecraft before that.",
+    icon: "videogames",
+    photos: [{ src: "/images/personal/videogames.jpg", aspect: 1.5 }],
   },
   {
     slug: "naruto",
@@ -683,5 +674,14 @@ export const hobbies: Hobby[] = [
       { src: "/images/personal/food/food-6.jpg", aspect: 1.3333 },
       { src: "/images/personal/food/food-7.jpg", aspect: 0.75 },
     ],
+  },
+  {
+    slug: "anime",
+    title: "Anime",
+    tagline: "I've watched a lot so far",
+    description:
+      "I've watched a lot of anime so far: Naruto, Death Note, Seven Deadly Sins, Black Clover, Vinland Saga, Attack on Titan, Your Lie in April, I Want to Eat Your Pancreas, Demon Slayer, Your Name, A Silent Voice, Hunter x Hunter, Jujutsu Kaisen, and Boruto. Always open to recommendations.",
+    icon: "anime",
+    photos: [{ src: "/images/personal/anime.jpg", aspect: 0.6667 }],
   },
 ];
