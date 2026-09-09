@@ -345,6 +345,9 @@ export const activityBackdrop: string[] = [
   "/images/backdrop/leadership-initiative/li-3.jpg",
   "/images/backdrop/leadership-initiative/li-4.jpg",
   "/images/backdrop/leadership-initiative/li-5.jpg",
+  "/images/backdrop/lumora/lumora-1.jpg",
+  "/images/backdrop/lumora/lumora-2.jpg",
+  "/images/backdrop/lumora/lumora-3.jpg",
 ];
 
 export const awards = [
