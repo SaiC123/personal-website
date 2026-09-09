@@ -357,6 +357,7 @@ export const activityBackdrop: string[] = [
   "/images/backdrop/innovateatl/innovateatl-3.jpg",
   "/images/backdrop/innovateatl/innovateatl-4.jpg",
   "/images/backdrop/homemore-project/homemore-1.jpg",
+  "/images/backdrop/citizens-bank/citizens-bank-1.jpg",
 ];
 
 export const awards = [
