@@ -586,7 +586,13 @@ export const hobbies: Hobby[] = [
     description:
       "Most of my time outside everything else goes to this: going out to eat, hanging out, no real agenda. I'll write more here soon.",
     icon: "friends",
-    photos: ["/images/personal/friends/friends-1.jpg"],
+    photos: [
+      "/images/personal/friends/friends-1.jpg",
+      "/images/personal/friends/friends-2.jpg",
+      "/images/personal/friends/friends-3.jpg",
+      "/images/personal/friends/friends-4.jpg",
+      "/images/personal/friends/friends-5.jpg",
+    ],
   },
   {
     slug: "concerts",
@@ -598,6 +604,9 @@ export const hobbies: Hobby[] = [
     photos: [
       "/images/personal/concerts/concerts-1.jpg",
       "/images/personal/concerts/concerts-2.jpg",
+      "/images/personal/concerts/concerts-3.jpg",
+      "/images/personal/concerts/concerts-4.jpg",
+      "/images/personal/concerts/concerts-5.jpg",
     ],
   },
 ];
