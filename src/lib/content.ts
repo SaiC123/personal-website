@@ -355,6 +355,7 @@ export const activityBackdropBySlug: Record<string, string[]> = {
     "/images/backdrop/lumora/lumora-1.jpg",
     "/images/backdrop/lumora/lumora-2.jpg",
     "/images/backdrop/lumora/lumora-3.jpg",
+    "/images/backdrop/lumora/lumora-4.jpg",
   ],
   pypath: [
     "/images/backdrop/pypath/pypath-1.jpg",
