@@ -519,7 +519,8 @@ export type Hobby = {
     | "friends"
     | "concerts"
     | "car"
-    | "starbucks";
+    | "starbucks"
+    | "food";
   /**
    * Real photos for this tile, each with its own width/height aspect ratio
    * (width / height) so the collage can lay them out like a justified photo
@@ -665,5 +666,22 @@ export const hobbies: Hobby[] = [
       "I go to my local Starbucks pretty much every day, sometimes for 9+ hours at a stretch, usually working alongside friends like Vihaan and Sarosh. I'm apparently a Top 1% visitor there.",
     icon: "starbucks",
     photos: [{ src: "/images/personal/starbucks.jpg", aspect: 0.9967 }],
+  },
+  {
+    slug: "food",
+    title: "Food",
+    tagline: "Big foodie - I cook, and I'm always chasing new places",
+    description:
+      "I cook a fair amount myself, and I'm always looking for a new restaurant or cuisine to try. Always down to go out and eat somewhere new.",
+    icon: "food",
+    photos: [
+      { src: "/images/personal/food/food-1.jpg", aspect: 0.75 },
+      { src: "/images/personal/food/food-2.jpg", aspect: 0.75 },
+      { src: "/images/personal/food/food-3.jpg", aspect: 0.75 },
+      { src: "/images/personal/food/food-4.jpg", aspect: 0.75 },
+      { src: "/images/personal/food/food-5.jpg", aspect: 0.75 },
+      { src: "/images/personal/food/food-6.jpg", aspect: 1.3333 },
+      { src: "/images/personal/food/food-7.jpg", aspect: 0.75 },
+    ],
   },
 ];
