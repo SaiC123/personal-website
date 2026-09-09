@@ -121,6 +121,16 @@ function CollageTile({
   onEnter: () => void;
   onLeave: () => void;
 }) {
+  // Collage tiles run a bit bigger than their treemap cell, pinned to the
+  // same center, so neighbors overlap slightly like a real photo collage
+  // instead of leaving hard seams - and cropping stays light since it's
+  // only the overlap margin, not the whole frame.
+  const overlap = 1.22;
+  const w = leaf.rect.w * overlap;
+  const h = leaf.rect.h * overlap;
+  const x = leaf.rect.x + leaf.rect.w / 2 - w / 2;
+  const y = leaf.rect.y + leaf.rect.h / 2 - h / 2;
+
   return (
     <button
       type="button"
@@ -128,38 +138,22 @@ function CollageTile({
       onMouseLeave={onLeave}
       onFocus={onEnter}
       onBlur={onLeave}
-      className={`group absolute overflow-hidden text-left transition-[filter,z-index] duration-200 ${
+      className={`group absolute overflow-hidden rounded-[3px] text-left shadow-[0_2px_10px_rgba(0,0,0,0.45)] transition-[filter,z-index] duration-200 ${
         active ? "z-10 brightness-110" : "brightness-90 hover:brightness-100"
       }`}
-      style={{
-        left: `${leaf.rect.x}%`,
-        top: `${leaf.rect.y}%`,
-        width: `${leaf.rect.w}%`,
-        height: `${leaf.rect.h}%`,
-        padding: "1px",
-      }}
+      style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, padding: "2px" }}
     >
-      <div className="relative h-full w-full overflow-hidden bg-[#0a0b0d]">
-        {/* Blurred, cropped copy fills the cell so there's no bare background,
-            while the sharp image on top stays uncropped (object-contain) so
-            nobody in the photo gets cut off. */}
+      <div className="relative h-full w-full overflow-hidden">
         <div
-          className="absolute inset-0 scale-110 opacity-50 blur-md transition-transform duration-150 ease-out"
-          style={{ transform: `scale(1.3) translate(${parallax.x}px, ${parallax.y}px)` }}
+          className="absolute inset-0 transition-transform duration-150 ease-out"
+          style={{ transform: `scale(1.06) translate(${parallax.x}px, ${parallax.y}px)` }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={leaf.photo} alt="" className="h-full w-full object-cover" />
         </div>
         <div
-          className="absolute inset-0 transition-transform duration-150 ease-out"
-          style={{ transform: `translate(${parallax.x * 0.6}px, ${parallax.y * 0.6}px)` }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={leaf.photo} alt="" className="h-full w-full object-contain" />
-        </div>
-        <div
           className={`absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
-            active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/10 ring-black/40"
+            active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/5 ring-black/30"
           }`}
         />
       </div>
@@ -219,7 +213,7 @@ export function PersonalLifeSection() {
           ref={containerRef}
           onMouseMove={handleMove}
           onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-          className="relative h-[480px] w-full sm:h-[620px]"
+          className="relative h-[480px] w-full overflow-hidden sm:h-[620px]"
         >
           {leaves.map((leaf, i) => {
             const depth = ((i % 5) + 1) * 2;
