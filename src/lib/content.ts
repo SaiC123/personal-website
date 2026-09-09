@@ -348,6 +348,10 @@ export const activityBackdrop: string[] = [
   "/images/backdrop/lumora/lumora-1.jpg",
   "/images/backdrop/lumora/lumora-2.jpg",
   "/images/backdrop/lumora/lumora-3.jpg",
+  "/images/backdrop/pypath/pypath-1.jpg",
+  "/images/backdrop/pypath/pypath-2.jpg",
+  "/images/backdrop/pypath/pypath-3.jpg",
+  "/images/backdrop/pypath/pypath-4.jpg",
 ];
 
 export const awards = [
