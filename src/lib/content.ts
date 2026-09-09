@@ -523,7 +523,14 @@ export const hobbies: Hobby[] = [
     description:
       "I've been playing for years and still perform in recitals. It's the one part of my day where I have to slow all the way down and get something exactly right, note by note.",
     icon: "piano",
-    photos: ["/images/backdrop/piano/piano-1.jpg"],
+    photos: [
+      "/images/backdrop/piano/piano-1.jpg",
+      "/images/backdrop/piano/piano-2.jpg",
+      "/images/backdrop/piano/piano-3.jpg",
+      "/images/backdrop/piano/piano-4.jpg",
+      "/images/backdrop/piano/piano-5.jpg",
+      "/images/backdrop/piano/piano-6.jpg",
+    ],
   },
   {
     slug: "dance",
@@ -532,7 +539,20 @@ export const hobbies: Hobby[] = [
     description:
       "Bollywood dance has been a constant for me, 30+ performances, background dancing at three concerts, and teaching classes on the side. It's the most fun way I know to work as a team.",
     icon: "dance",
-    photos: ["/images/backdrop/dance/dance-1.jpg"],
+    photos: [
+      "/images/backdrop/dance/dance-1.jpg",
+      "/images/backdrop/dance/dance-2.jpg",
+      "/images/backdrop/dance/dance-3.jpg",
+      "/images/backdrop/dance/dance-4.jpg",
+      "/images/backdrop/dance/dance-5.jpg",
+      "/images/backdrop/dance/dance-6.jpg",
+      "/images/backdrop/dance/dance-7.jpg",
+      "/images/backdrop/dance/dance-8.jpg",
+      "/images/backdrop/dance/dance-9.jpg",
+      "/images/backdrop/dance/dance-10.jpg",
+      "/images/backdrop/dance/dance-11.jpg",
+      "/images/backdrop/dance/dance-12.jpg",
+    ],
   },
   {
     slug: "valorant",

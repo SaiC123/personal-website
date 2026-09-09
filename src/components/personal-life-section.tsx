@@ -139,13 +139,23 @@ function CollageTile({
         padding: "1px",
       }}
     >
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="relative h-full w-full overflow-hidden bg-[#0a0b0d]">
+        {/* Blurred, cropped copy fills the cell so there's no bare background,
+            while the sharp image on top stays uncropped (object-contain) so
+            nobody in the photo gets cut off. */}
         <div
-          className="absolute inset-0 transition-transform duration-150 ease-out"
-          style={{ transform: `scale(1.14) translate(${parallax.x}px, ${parallax.y}px)` }}
+          className="absolute inset-0 scale-110 opacity-50 blur-md transition-transform duration-150 ease-out"
+          style={{ transform: `scale(1.3) translate(${parallax.x}px, ${parallax.y}px)` }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={leaf.photo} alt="" className="h-full w-full object-cover" />
+        </div>
+        <div
+          className="absolute inset-0 transition-transform duration-150 ease-out"
+          style={{ transform: `translate(${parallax.x * 0.6}px, ${parallax.y * 0.6}px)` }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={leaf.photo} alt="" className="h-full w-full object-contain" />
         </div>
         <div
           className={`absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
