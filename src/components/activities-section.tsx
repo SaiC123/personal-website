@@ -43,24 +43,33 @@ type Tile = { src: string; left: number; top: number; width: number; height: num
  * Lays photos out as an overlapping collage instead of a strict grid: each
  * tile is sized bigger than its bare share of the space, so neighbors
  * overlap slightly and there's never a gap, even when the photo count
- * doesn't divide evenly. Unusually wide source images get extra width so
- * they read as themselves instead of a cropped sliver.
+ * doesn't divide evenly. A short last row is spread across the *actual*
+ * number of photos in it (not the full column count), so it still reaches
+ * both edges instead of leaving an empty cell. Unusually wide source
+ * images get extra width so they read as themselves instead of a cropped
+ * sliver.
  */
 function collageTiles(backdrop: string[]): Tile[] {
   const { cols, rows } = gridDims(backdrop.length);
   const overlap = 1.28;
-  return backdrop.map((src, i) => {
-    const col = i % cols;
-    const row = Math.floor(i / cols);
-    const wide = wideBackdropImages.has(src);
-    return {
-      src,
-      left: ((col + 0.5) / cols) * 100,
-      top: ((row + 0.5) / rows) * 100,
-      width: (100 / cols) * overlap * (wide ? 1.6 : 1),
-      height: (100 / rows) * overlap,
-    };
-  });
+  const tiles: Tile[] = [];
+  let index = 0;
+  for (let row = 0; row < rows && index < backdrop.length; row++) {
+    const rowCount = Math.min(cols, backdrop.length - index);
+    for (let col = 0; col < rowCount; col++) {
+      const src = backdrop[index];
+      const wide = wideBackdropImages.has(src);
+      tiles.push({
+        src,
+        left: ((col + 0.5) / rowCount) * 100,
+        top: ((row + 0.5) / rows) * 100,
+        width: (100 / rowCount) * overlap * (wide ? 1.6 : 1),
+        height: (100 / rows) * overlap,
+      });
+      index++;
+    }
+  }
+  return tiles;
 }
 
 export function ActivitiesSection() {
