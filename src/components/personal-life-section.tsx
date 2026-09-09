@@ -74,23 +74,29 @@ function sliceTreemap<T>(items: { weight: number; data: T }[], rect: Rect): { da
 type CollageLeaf = {
   key: string;
   hobby: Hobby;
-  photo: string | null;
+  photo: string;
   rect: Rect;
 };
 
-function buildCollage(list: Hobby[]): CollageLeaf[] {
-  const sorted = [...list].sort((a, b) => Math.max(1, b.photos.length) - Math.max(1, a.photos.length));
-  const hobbyRects = sliceTreemap(
-    sorted.map((h) => ({ weight: Math.max(1, h.photos.length), data: h })),
+/**
+ * Builds the collage in two treemap passes: first each hobby gets its own
+ * rectangle sized by how many photos it has, then that rectangle is
+ * subdivided among just that hobby's photos. The result is every photo
+ * tiling the page edge-to-edge while every hobby's photos stay clustered
+ * into one contiguous block instead of being scattered around.
+ */
+function buildCollage(list: Hobby[]): { leaves: CollageLeaf[]; hobbyRects: Map<string, Rect> } {
+  const withPhotos = list.filter((h) => h.photos.length > 0);
+  const sorted = [...withPhotos].sort((a, b) => b.photos.length - a.photos.length);
+  const outer = sliceTreemap(
+    sorted.map((h) => ({ weight: h.photos.length, data: h })),
     { x: 0, y: 0, w: 100, h: 100 },
   );
 
   const leaves: CollageLeaf[] = [];
-  for (const { data: hobby, rect } of hobbyRects) {
-    if (hobby.photos.length === 0) {
-      leaves.push({ key: hobby.slug, hobby, photo: null, rect });
-      continue;
-    }
+  const hobbyRects = new Map<string, Rect>();
+  for (const { data: hobby, rect } of outer) {
+    hobbyRects.set(hobby.slug, rect);
     const photoRects = sliceTreemap(
       hobby.photos.map((p) => ({ weight: 1, data: p })),
       rect,
@@ -99,7 +105,7 @@ function buildCollage(list: Hobby[]): CollageLeaf[] {
       leaves.push({ key: `${hobby.slug}-${i}`, hobby, photo, rect: r });
     });
   }
-  return leaves;
+  return { leaves, hobbyRects };
 }
 
 function CollageTile({
@@ -115,8 +121,6 @@ function CollageTile({
   onEnter: () => void;
   onLeave: () => void;
 }) {
-  const Icon = hobbyIcons[leaf.hobby.icon];
-
   return (
     <button
       type="button"
@@ -136,22 +140,13 @@ function CollageTile({
       }}
     >
       <div className="relative h-full w-full overflow-hidden">
-        {leaf.photo ? (
-          <div
-            className="absolute inset-0 transition-transform duration-150 ease-out"
-            style={{ transform: `scale(1.14) translate(${parallax.x}px, ${parallax.y}px)` }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={leaf.photo} alt="" className="h-full w-full object-cover" />
-          </div>
-        ) : (
-          <div
-            className="absolute inset-0 flex items-center justify-center bg-[#14161a] transition-transform duration-150 ease-out"
-            style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
-          >
-            <Icon className={`size-6 transition-colors duration-300 sm:size-8 ${active ? "text-[#4a9eff]" : "text-white/25"}`} />
-          </div>
-        )}
+        <div
+          className="absolute inset-0 transition-transform duration-150 ease-out"
+          style={{ transform: `scale(1.14) translate(${parallax.x}px, ${parallax.y}px)` }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={leaf.photo} alt="" className="h-full w-full object-cover" />
+        </div>
         <div
           className={`absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
             active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/10 ring-black/40"
@@ -163,14 +158,14 @@ function CollageTile({
 }
 
 export function PersonalLifeSection() {
-  const [activeKey, setActiveKey] = React.useState<string | null>(null);
+  const [activeSlug, setActiveSlug] = React.useState<string | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
-  const [hoverRect, setHoverRect] = React.useState<Rect | null>(null);
 
-  const leaves = React.useMemo(() => buildCollage(hobbies), []);
-  const active = leaves.find((l) => l.key === activeKey) ?? null;
-  const ActiveIcon = active ? hobbyIcons[active.hobby.icon] : null;
+  const { leaves, hobbyRects } = React.useMemo(() => buildCollage(hobbies), []);
+  const active = hobbies.find((h) => h.slug === activeSlug) ?? null;
+  const ActiveIcon = active ? hobbyIcons[active.icon] : null;
+  const activeRect = activeSlug ? hobbyRects.get(activeSlug) ?? null : null;
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -180,12 +175,14 @@ export function PersonalLifeSection() {
     setTilt({ x: px * 2, y: py * 2 });
   };
 
-  // Float the detail card in whichever corner is farthest from the tile
-  // being hovered, so it never sits on top of the picture itself.
-  const cardCorner = hoverRect
+  // Float the detail card in whichever corner is farthest from the hobby
+  // block being hovered (using that whole block, not the single sub-tile),
+  // so it stays put while moving across one hobby's own mini-collage and
+  // never sits on top of a picture.
+  const cardCorner = activeRect
     ? {
-        vertical: hoverRect.y + hoverRect.h / 2 < 50 ? "bottom" : "top",
-        horizontal: hoverRect.x + hoverRect.w / 2 < 50 ? "right" : "left",
+        vertical: activeRect.y + activeRect.h / 2 < 50 ? "bottom" : "top",
+        horizontal: activeRect.x + activeRect.w / 2 < 50 ? "right" : "left",
       }
     : { vertical: "bottom", horizontal: "right" };
 
@@ -220,13 +217,10 @@ export function PersonalLifeSection() {
               <CollageTile
                 key={leaf.key}
                 leaf={leaf}
-                active={leaf.key === activeKey}
+                active={leaf.hobby.slug === activeSlug}
                 parallax={{ x: tilt.x * depth, y: tilt.y * depth }}
-                onEnter={() => {
-                  setActiveKey(leaf.key);
-                  setHoverRect(leaf.rect);
-                }}
-                onLeave={() => setActiveKey(null)}
+                onEnter={() => setActiveSlug(leaf.hobby.slug)}
+                onLeave={() => setActiveSlug(null)}
               />
             );
           })}
@@ -241,11 +235,9 @@ export function PersonalLifeSection() {
                 <span className="mb-3 flex size-9 items-center justify-center rounded-full bg-[#4a9eff]/20 text-[#4a9eff]">
                   <ActiveIcon className="size-4" />
                 </span>
-                <h3 className="font-display-alt text-lg font-bold text-white">{active.hobby.title}</h3>
-                <p className="mt-0.5 text-[12px] text-white/50">{active.hobby.tagline}</p>
-                <p className="mt-3 text-[13px] leading-relaxed text-white/80">
-                  {active.hobby.description}
-                </p>
+                <h3 className="font-display-alt text-lg font-bold text-white">{active.title}</h3>
+                <p className="mt-0.5 text-[12px] text-white/50">{active.tagline}</p>
+                <p className="mt-3 text-[13px] leading-relaxed text-white/80">{active.description}</p>
               </>
             )}
           </div>
@@ -254,7 +246,7 @@ export function PersonalLifeSection() {
         {/* Mobile: hover doesn't apply on touch, so list everything inline below */}
         <div className="mx-auto max-w-5xl px-6 py-8 sm:hidden">
           <div className="grid gap-3">
-            {hobbies.map((h) => {
+            {hobbies.filter((h) => h.photos.length > 0).map((h) => {
               const Icon = hobbyIcons[h.icon];
               return (
                 <div key={h.slug} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
