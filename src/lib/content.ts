@@ -368,7 +368,13 @@ export const activityBackdropBySlug: Record<string, string[]> = {
     "/images/backdrop/innovateatl/innovateatl-3.jpg",
     "/images/backdrop/innovateatl/innovateatl-4.jpg",
   ],
-  "homemore-project": ["/images/backdrop/homemore-project/homemore-1.jpg"],
+  "homemore-project": [
+    "/images/backdrop/homemore-project/homemore-1.jpg",
+    "/images/backdrop/homemore-project/homemore-2.jpg",
+    "/images/backdrop/homemore-project/homemore-3.jpg",
+    "/images/backdrop/homemore-project/homemore-4.jpg",
+    "/images/backdrop/homemore-project/homemore-5.jpg",
+  ],
   "citizens-bank": ["/images/backdrop/citizens-bank/citizens-bank-1.jpg"],
 };
 

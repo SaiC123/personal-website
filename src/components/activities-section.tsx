@@ -17,10 +17,31 @@ const slides: CoverflowSlide[] = activities.map((a) => ({
   ],
 }));
 
+/**
+ * Picks a column/row count so every photo appears exactly once, sized to
+ * fill the backdrop rather than tiling one image over and over. Balances
+ * two things: leaving as few empty cells as possible, and landing close to
+ * a wide (landscape) shape, since the backdrop itself is short and wide.
+ */
+function gridDims(count: number, targetAspect = 2.2): { cols: number; rows: number } {
+  if (count <= 0) return { cols: 1, rows: 1 };
+  const idealCols = Math.max(1, Math.round(Math.sqrt(count * targetAspect)));
+  let best = { cols: count, rows: 1, score: Infinity };
+  for (let cols = 1; cols <= count; cols++) {
+    const rows = Math.ceil(count / cols);
+    const waste = cols * rows - count;
+    const distFromIdeal = Math.abs(cols - idealCols);
+    const score = waste * 2 + distFromIdeal * 1.5;
+    if (score < best.score) best = { cols, rows, score };
+  }
+  return { cols: best.cols, rows: best.rows };
+}
+
 export function ActivitiesSection() {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const activeActivity = activities[activeIndex] ?? activities[0];
   const backdrop = activityBackdropFor(activeActivity);
+  const { cols, rows } = gridDims(backdrop.length);
 
   return (
     <section
@@ -30,17 +51,18 @@ export function ActivitiesSection() {
       <div aria-hidden className="absolute inset-0 -z-10">
         <div
           key={activeActivity.slug}
-          className="grid h-full grid-cols-4 duration-700 animate-in fade-in sm:grid-cols-6"
-          style={{ filter: "blur(5px) saturate(0.95)", transform: "scale(1.08)" }}
+          className="grid h-full duration-700 animate-in fade-in"
+          style={{
+            filter: "blur(5px) saturate(0.95)",
+            transform: "scale(1.08)",
+            gridTemplateColumns: `repeat(${cols}, 1fr)`,
+            gridTemplateRows: `repeat(${rows}, 1fr)`,
+          }}
         >
-          {Array.from({ length: 18 }).map((_, i) => (
-            <div key={i} className="relative aspect-square overflow-hidden">
+          {backdrop.map((src) => (
+            <div key={src} className="relative overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={backdrop[i % backdrop.length]}
-                alt=""
-                className="h-full w-full object-cover"
-              />
+              <img src={src} alt="" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>
