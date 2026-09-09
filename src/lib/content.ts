@@ -330,35 +330,52 @@ export const activities: Activity[] = [
   },
 ];
 
-// Backdrop collage behind the Activities carousel, heavily blurred so it
-// reads as ambient texture, not content. Real photos, added one activity
-// at a time as they come in (Equinox so far).
-export const activityBackdrop: string[] = [
-  "/images/backdrop/equinox/equinox-1.jpg",
-  "/images/backdrop/equinox/equinox-2.jpg",
-  "/images/backdrop/equinox/equinox-3.jpg",
-  "/images/backdrop/equinox/equinox-4.jpg",
-  "/images/backdrop/equinox/equinox-5.jpg",
-  "/images/backdrop/equinox/equinox-6.jpg",
-  "/images/backdrop/leadership-initiative/li-1.jpg",
-  "/images/backdrop/leadership-initiative/li-2.jpg",
-  "/images/backdrop/leadership-initiative/li-3.jpg",
-  "/images/backdrop/leadership-initiative/li-4.jpg",
-  "/images/backdrop/leadership-initiative/li-5.jpg",
-  "/images/backdrop/lumora/lumora-1.jpg",
-  "/images/backdrop/lumora/lumora-2.jpg",
-  "/images/backdrop/lumora/lumora-3.jpg",
-  "/images/backdrop/pypath/pypath-1.jpg",
-  "/images/backdrop/pypath/pypath-2.jpg",
-  "/images/backdrop/pypath/pypath-3.jpg",
-  "/images/backdrop/pypath/pypath-4.jpg",
-  "/images/backdrop/innovateatl/innovateatl-1.jpg",
-  "/images/backdrop/innovateatl/innovateatl-2.jpg",
-  "/images/backdrop/innovateatl/innovateatl-3.jpg",
-  "/images/backdrop/innovateatl/innovateatl-4.jpg",
-  "/images/backdrop/homemore-project/homemore-1.jpg",
-  "/images/backdrop/citizens-bank/citizens-bank-1.jpg",
-];
+// Backdrop photos behind the Activities carousel, blurred so they read as
+// ambient texture. Keyed by activity slug so the background can switch to
+// match whichever activity is centered in the carousel. Activities without
+// a dedicated set yet fall back to their own logo (see activityBackdropFor
+// below).
+export const activityBackdropBySlug: Record<string, string[]> = {
+  equinox: [
+    "/images/backdrop/equinox/equinox-1.jpg",
+    "/images/backdrop/equinox/equinox-2.jpg",
+    "/images/backdrop/equinox/equinox-3.jpg",
+    "/images/backdrop/equinox/equinox-4.jpg",
+    "/images/backdrop/equinox/equinox-5.jpg",
+    "/images/backdrop/equinox/equinox-6.jpg",
+  ],
+  "leadership-initiative": [
+    "/images/backdrop/leadership-initiative/li-1.jpg",
+    "/images/backdrop/leadership-initiative/li-2.jpg",
+    "/images/backdrop/leadership-initiative/li-3.jpg",
+    "/images/backdrop/leadership-initiative/li-4.jpg",
+    "/images/backdrop/leadership-initiative/li-5.jpg",
+  ],
+  lumora: [
+    "/images/backdrop/lumora/lumora-1.jpg",
+    "/images/backdrop/lumora/lumora-2.jpg",
+    "/images/backdrop/lumora/lumora-3.jpg",
+  ],
+  pypath: [
+    "/images/backdrop/pypath/pypath-1.jpg",
+    "/images/backdrop/pypath/pypath-2.jpg",
+    "/images/backdrop/pypath/pypath-3.jpg",
+    "/images/backdrop/pypath/pypath-4.jpg",
+  ],
+  innovateatl: [
+    "/images/backdrop/innovateatl/innovateatl-1.jpg",
+    "/images/backdrop/innovateatl/innovateatl-2.jpg",
+    "/images/backdrop/innovateatl/innovateatl-3.jpg",
+    "/images/backdrop/innovateatl/innovateatl-4.jpg",
+  ],
+  "homemore-project": ["/images/backdrop/homemore-project/homemore-1.jpg"],
+  "citizens-bank": ["/images/backdrop/citizens-bank/citizens-bank-1.jpg"],
+};
+
+/** Backdrop images for one activity, falling back to its own logo. */
+export function activityBackdropFor(activity: Activity): string[] {
+  return activityBackdropBySlug[activity.slug] ?? [activity.image];
+}
 
 export const awards = [
   { place: "1st", event: "TSA National Leadership Conference", detail: "Software Development" },

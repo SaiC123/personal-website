@@ -43,6 +43,8 @@ export interface CoverflowCarouselProps {
   label?: string;
   className?: string;
   cardClassName?: string;
+  /** Fires whenever the centered slide changes. */
+  onSelectedChange?: (index: number) => void;
 }
 
 export function CoverflowCarousel({
@@ -61,6 +63,7 @@ export function CoverflowCarousel({
   label = "Cover carousel",
   className,
   cardClassName,
+  onSelectedChange,
 }: CoverflowCarouselProps) {
   const count = slides.length;
 
@@ -82,6 +85,10 @@ export function CoverflowCarousel({
   } | null>(null);
 
   const [selected, setSelected] = React.useState(0);
+
+  React.useEffect(() => {
+    onSelectedChange?.(selected);
+  }, [selected, onSelectedChange]);
 
   /** Nearest whole card, folded back into 0..count-1. */
   const indexAt = React.useCallback(
