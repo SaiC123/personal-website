@@ -520,8 +520,13 @@ export type Hobby = {
     | "concerts"
     | "car"
     | "starbucks";
-  /** Real photos for this tile. Empty means it's using the icon treatment for now. */
-  photos: string[];
+  /**
+   * Real photos for this tile, each with its own width/height aspect ratio
+   * (width / height) so the collage can lay them out like a justified photo
+   * gallery - every photo shown in full, never cropped, and sized close to
+   * its natural shape. Empty means it's using the icon treatment for now.
+   */
+  photos: { src: string; aspect: number }[];
 };
 
 // Placeholder copy - swap in your own words whenever you're ready.
@@ -534,12 +539,12 @@ export const hobbies: Hobby[] = [
       "I've been playing for years and still perform in recitals. It's the one part of my day where I have to slow all the way down and get something exactly right, note by note.",
     icon: "piano",
     photos: [
-      "/images/backdrop/piano/piano-1.jpg",
-      "/images/backdrop/piano/piano-2.jpg",
-      "/images/backdrop/piano/piano-3.jpg",
-      "/images/backdrop/piano/piano-4.jpg",
-      "/images/backdrop/piano/piano-5.jpg",
-      "/images/backdrop/piano/piano-6.jpg",
+      { src: "/images/backdrop/piano/piano-1.jpg", aspect: 1.7787 },
+      { src: "/images/backdrop/piano/piano-2.jpg", aspect: 1.7787 },
+      { src: "/images/backdrop/piano/piano-3.jpg", aspect: 1.5 },
+      { src: "/images/backdrop/piano/piano-4.jpg", aspect: 1.7787 },
+      { src: "/images/backdrop/piano/piano-5.jpg", aspect: 1.7787 },
+      { src: "/images/backdrop/piano/piano-6.jpg", aspect: 1.3333 },
     ],
   },
   {
@@ -550,18 +555,18 @@ export const hobbies: Hobby[] = [
       "Bollywood dance has been a constant for me, 30+ performances, background dancing at three concerts, and teaching classes on the side. It's the most fun way I know to work as a team.",
     icon: "dance",
     photos: [
-      "/images/backdrop/dance/dance-1.jpg",
-      "/images/backdrop/dance/dance-2.jpg",
-      "/images/backdrop/dance/dance-3.jpg",
-      "/images/backdrop/dance/dance-4.jpg",
-      "/images/backdrop/dance/dance-5.jpg",
-      "/images/backdrop/dance/dance-6.jpg",
-      "/images/backdrop/dance/dance-7.jpg",
-      "/images/backdrop/dance/dance-8.jpg",
-      "/images/backdrop/dance/dance-9.jpg",
-      "/images/backdrop/dance/dance-10.jpg",
-      "/images/backdrop/dance/dance-11.jpg",
-      "/images/backdrop/dance/dance-12.jpg",
+      { src: "/images/backdrop/dance/dance-1.jpg", aspect: 1.3333 },
+      { src: "/images/backdrop/dance/dance-2.jpg", aspect: 2.1226 },
+      { src: "/images/backdrop/dance/dance-3.jpg", aspect: 1.7787 },
+      { src: "/images/backdrop/dance/dance-4.jpg", aspect: 1.3333 },
+      { src: "/images/backdrop/dance/dance-5.jpg", aspect: 1.4975 },
+      { src: "/images/backdrop/dance/dance-6.jpg", aspect: 1.3333 },
+      { src: "/images/backdrop/dance/dance-7.jpg", aspect: 1.5 },
+      { src: "/images/backdrop/dance/dance-8.jpg", aspect: 1.5 },
+      { src: "/images/backdrop/dance/dance-9.jpg", aspect: 1.5 },
+      { src: "/images/backdrop/dance/dance-10.jpg", aspect: 1.4975 },
+      { src: "/images/backdrop/dance/dance-11.jpg", aspect: 1.5 },
+      { src: "/images/backdrop/dance/dance-12.jpg", aspect: 1.5 },
     ],
   },
   {
@@ -607,7 +612,7 @@ export const hobbies: Hobby[] = [
     description:
       "Scouting has meant a lot of time outdoors, including multi-day backpacking treks with my crew.",
     icon: "scouts",
-    photos: ["/images/personal/scouts.jpg"],
+    photos: [{ src: "/images/personal/scouts.jpg", aspect: 1.5491 }],
   },
   {
     slug: "friends",
@@ -617,11 +622,11 @@ export const hobbies: Hobby[] = [
       "Most of my time outside everything else goes to this: going out to eat, hanging out, no real agenda. I'll write more here soon.",
     icon: "friends",
     photos: [
-      "/images/personal/friends/friends-1.jpg",
-      "/images/personal/friends/friends-2.jpg",
-      "/images/personal/friends/friends-3.jpg",
-      "/images/personal/friends/friends-4.jpg",
-      "/images/personal/friends/friends-5.jpg",
+      { src: "/images/personal/friends/friends-1.jpg", aspect: 1.3333 },
+      { src: "/images/personal/friends/friends-2.jpg", aspect: 0.75 },
+      { src: "/images/personal/friends/friends-3.jpg", aspect: 1.3333 },
+      { src: "/images/personal/friends/friends-4.jpg", aspect: 1.3333 },
+      { src: "/images/personal/friends/friends-5.jpg", aspect: 1.3333 },
     ],
   },
   {
@@ -632,11 +637,11 @@ export const hobbies: Hobby[] = [
       "I go to as many shows as I can with friends. I'll write more here soon.",
     icon: "concerts",
     photos: [
-      "/images/personal/concerts/concerts-1.jpg",
-      "/images/personal/concerts/concerts-2.jpg",
-      "/images/personal/concerts/concerts-3.jpg",
-      "/images/personal/concerts/concerts-4.jpg",
-      "/images/personal/concerts/concerts-5.jpg",
+      { src: "/images/personal/concerts/concerts-1.jpg", aspect: 0.75 },
+      { src: "/images/personal/concerts/concerts-2.jpg", aspect: 1.3333 },
+      { src: "/images/personal/concerts/concerts-3.jpg", aspect: 1.3333 },
+      { src: "/images/personal/concerts/concerts-4.jpg", aspect: 0.75 },
+      { src: "/images/personal/concerts/concerts-5.jpg", aspect: 1.3333 },
     ],
   },
   {
@@ -647,9 +652,9 @@ export const hobbies: Hobby[] = [
       "My 2010 Mustang GT is my first car and still my daily driver. It's a manual, and I recently swapped in a custom screen myself.",
     icon: "car",
     photos: [
-      "/images/personal/car/car-1.jpg",
-      "/images/personal/car/car-2.jpg",
-      "/images/personal/car/car-3.jpg",
+      { src: "/images/personal/car/car-1.jpg", aspect: 0.75 },
+      { src: "/images/personal/car/car-2.jpg", aspect: 0.75 },
+      { src: "/images/personal/car/car-3.jpg", aspect: 0.7167 },
     ],
   },
   {
@@ -659,6 +664,6 @@ export const hobbies: Hobby[] = [
     description:
       "I go to my local Starbucks pretty much every day, sometimes for 9+ hours at a stretch, usually working alongside friends like Vihaan and Sarosh. I'm apparently a Top 1% visitor there.",
     icon: "starbucks",
-    photos: ["/images/personal/starbucks.jpg"],
+    photos: [{ src: "/images/personal/starbucks.jpg", aspect: 0.9967 }],
   },
 ];

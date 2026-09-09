@@ -33,108 +33,73 @@ const hobbyIcons: Record<Hobby["icon"], LucideIcon> = {
   starbucks: Coffee,
 };
 
-type Rect = { x: number; y: number; w: number; h: number };
+type FlatPhoto = { key: string; hobby: Hobby; src: string; aspect: number };
+type LaidOutPhoto = FlatPhoto & { width: number; height: number; top: number; left: number };
+
+const GAP = 4;
 
 /**
- * Slice-and-dice treemap: recursively halves the item list by weight and
- * cuts the current rect along its longer side, so every rect is filled
- * edge-to-edge with no gaps and no empty cells, however the weights split.
+ * Classic "justified gallery" layout (the row style Flickr/Google Photos
+ * use): walk the photos in order, filling a row until its natural width at
+ * a target height reaches the container width, then scale that whole row
+ * so it lands exactly at the container's edges. Every photo keeps its own
+ * aspect ratio - nothing gets cropped - and because photos already arrive
+ * grouped by hobby, each hobby's photos land in the same or neighboring
+ * rows without needing to force hard breaks between hobbies.
  */
-function sliceTreemap<T>(items: { weight: number; data: T }[], rect: Rect): { data: T; rect: Rect }[] {
-  if (items.length === 0) return [];
-  if (items.length === 1) return [{ data: items[0].data, rect }];
+function justify(photos: FlatPhoto[], containerWidth: number, targetHeight: number): LaidOutPhoto[] {
+  if (containerWidth <= 0 || photos.length === 0) return [];
 
-  const total = items.reduce((s, i) => s + i.weight, 0);
-  let acc = 0;
-  let splitIndex = 1;
-  for (let i = 0; i < items.length; i++) {
-    acc += items[i].weight;
-    if (acc >= total / 2) {
-      splitIndex = i + 1;
-      break;
+  const out: LaidOutPhoto[] = [];
+  let row: FlatPhoto[] = [];
+  let aspectSum = 0;
+  let top = 0;
+
+  const flushRow = (items: FlatPhoto[], isLastRow: boolean) => {
+    if (items.length === 0) return;
+    const sum = items.reduce((s, p) => s + p.aspect, 0);
+    const gapsWidth = GAP * (items.length - 1);
+    const naturalWidth = sum * targetHeight;
+    let scale = (containerWidth - gapsWidth) / naturalWidth;
+    if (isLastRow) scale = Math.min(scale, 1.25);
+    const rowHeight = targetHeight * scale;
+    let left = 0;
+    for (const p of items) {
+      const width = p.aspect * rowHeight;
+      out.push({ ...p, width, height: rowHeight, top, left });
+      left += width + GAP;
+    }
+    top += rowHeight + GAP;
+  };
+
+  for (const photo of photos) {
+    row.push(photo);
+    aspectSum += photo.aspect;
+    const widthAtTarget = aspectSum * targetHeight + GAP * (row.length - 1);
+    if (widthAtTarget >= containerWidth) {
+      flushRow(row, false);
+      row = [];
+      aspectSum = 0;
     }
   }
-  splitIndex = Math.max(1, Math.min(items.length - 1, splitIndex));
-  const groupA = items.slice(0, splitIndex);
-  const groupB = items.slice(splitIndex);
-  const weightA = groupA.reduce((s, i) => s + i.weight, 0);
-  const weightB = groupB.reduce((s, i) => s + i.weight, 0);
-  const fracA = weightA / (weightA + weightB);
+  flushRow(row, true);
 
-  if (rect.w >= rect.h) {
-    const wA = rect.w * fracA;
-    return [
-      ...sliceTreemap(groupA, { ...rect, w: wA }),
-      ...sliceTreemap(groupB, { ...rect, x: rect.x + wA, w: rect.w - wA }),
-    ];
-  }
-  const hA = rect.h * fracA;
-  return [
-    ...sliceTreemap(groupA, { ...rect, h: hA }),
-    ...sliceTreemap(groupB, { ...rect, y: rect.y + hA, h: rect.h - hA }),
-  ];
-}
-
-type CollageLeaf = {
-  key: string;
-  hobby: Hobby;
-  photo: string;
-  rect: Rect;
-};
-
-/**
- * Builds the collage in two treemap passes: first each hobby gets its own
- * rectangle sized by how many photos it has, then that rectangle is
- * subdivided among just that hobby's photos. The result is every photo
- * tiling the page edge-to-edge while every hobby's photos stay clustered
- * into one contiguous block instead of being scattered around.
- */
-function buildCollage(list: Hobby[]): { leaves: CollageLeaf[]; hobbyRects: Map<string, Rect> } {
-  const withPhotos = list.filter((h) => h.photos.length > 0);
-  const sorted = [...withPhotos].sort((a, b) => b.photos.length - a.photos.length);
-  const outer = sliceTreemap(
-    sorted.map((h) => ({ weight: h.photos.length, data: h })),
-    { x: 0, y: 0, w: 100, h: 100 },
-  );
-
-  const leaves: CollageLeaf[] = [];
-  const hobbyRects = new Map<string, Rect>();
-  for (const { data: hobby, rect } of outer) {
-    hobbyRects.set(hobby.slug, rect);
-    const photoRects = sliceTreemap(
-      hobby.photos.map((p) => ({ weight: 1, data: p })),
-      rect,
-    );
-    photoRects.forEach(({ data: photo, rect: r }, i) => {
-      leaves.push({ key: `${hobby.slug}-${i}`, hobby, photo, rect: r });
-    });
-  }
-  return { leaves, hobbyRects };
+  return out;
 }
 
 function CollageTile({
-  leaf,
+  photo,
   active,
   parallax,
   onEnter,
   onLeave,
 }: {
-  leaf: CollageLeaf;
+  photo: LaidOutPhoto;
   active: boolean;
   parallax: { x: number; y: number };
   onEnter: () => void;
   onLeave: () => void;
 }) {
-  // Collage tiles run a bit bigger than their treemap cell, pinned to the
-  // same center, so neighbors overlap slightly like a real photo collage
-  // instead of leaving hard seams - and cropping stays light since it's
-  // only the overlap margin, not the whole frame.
-  const overlap = 1.22;
-  const w = leaf.rect.w * overlap;
-  const h = leaf.rect.h * overlap;
-  const x = leaf.rect.x + leaf.rect.w / 2 - w / 2;
-  const y = leaf.rect.y + leaf.rect.h / 2 - h / 2;
-
   return (
     <button
       type="button"
@@ -142,57 +107,79 @@ function CollageTile({
       onMouseLeave={onLeave}
       onFocus={onEnter}
       onBlur={onLeave}
-      className={`group absolute overflow-hidden rounded-[3px] text-left shadow-[0_2px_10px_rgba(0,0,0,0.45)] transition-[filter,z-index] duration-200 ${
+      className={`group absolute overflow-hidden text-left transition-[filter,z-index] duration-200 ${
         active ? "z-10 brightness-110" : "brightness-90 hover:brightness-100"
       }`}
-      style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%`, padding: "2px" }}
+      style={{ left: photo.left, top: photo.top, width: photo.width, height: photo.height }}
     >
-      <div className="relative h-full w-full overflow-hidden bg-[#101114]">
-        <div
-          className="absolute inset-0 transition-transform duration-150 ease-out"
-          style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={leaf.photo} alt="" className="h-full w-full object-contain" />
-        </div>
-        <div
-          className={`absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
-            active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/0 ring-black/30"
-          }`}
-        />
+      <div
+        className="h-full w-full transition-transform duration-150 ease-out"
+        style={{ transform: `translate(${parallax.x}px, ${parallax.y}px)` }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={photo.src} alt="" className="h-full w-full object-cover" />
       </div>
+      <div
+        className={`pointer-events-none absolute inset-0 ring-1 ring-inset transition-all duration-200 ${
+          active ? "bg-black/0 ring-[#4a9eff]/80" : "bg-black/0 ring-black/25"
+        }`}
+      />
     </button>
   );
 }
 
 export function PersonalLifeSection() {
   const [activeSlug, setActiveSlug] = React.useState<string | null>(null);
+  const [hoverBox, setHoverBox] = React.useState<{ left: number; top: number; width: number; height: number } | null>(
+    null,
+  );
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = React.useState(0);
   const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
 
-  const { leaves, hobbyRects } = React.useMemo(() => buildCollage(hobbies), []);
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => setContainerWidth(entries[0].contentRect.width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const flat = React.useMemo<FlatPhoto[]>(
+    () =>
+      hobbies.flatMap((h) =>
+        h.photos.map((p, i) => ({ key: `${h.slug}-${i}`, hobby: h, src: p.src, aspect: p.aspect })),
+      ),
+    [],
+  );
+
+  const targetHeight = containerWidth < 640 ? 92 : 150;
+  const laidOut = React.useMemo(
+    () => justify(flat, containerWidth, targetHeight),
+    [flat, containerWidth, targetHeight],
+  );
+  const totalHeight = laidOut.length > 0 ? Math.max(...laidOut.map((p) => p.top + p.height)) : 0;
+
   const active = hobbies.find((h) => h.slug === activeSlug) ?? null;
   const ActiveIcon = active ? hobbyIcons[active.icon] : null;
-  const activeRect = activeSlug ? hobbyRects.get(activeSlug) ?? null : null;
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ x: px * 2, y: py * 2 });
+    setTilt({ x: px * 1.4, y: py * 1.4 });
   };
 
-  // Float the detail card in whichever corner is farthest from the hobby
-  // block being hovered (using that whole block, not the single sub-tile),
-  // so it stays put while moving across one hobby's own mini-collage and
-  // never sits on top of a picture.
-  const cardCorner = activeRect
-    ? {
-        vertical: activeRect.y + activeRect.h / 2 < 50 ? "bottom" : "top",
-        horizontal: activeRect.x + activeRect.w / 2 < 50 ? "right" : "left",
-      }
-    : { vertical: "bottom", horizontal: "right" };
+  // Float the detail card in whichever corner is farthest from the tile
+  // being hovered, so it never sits on top of the picture itself.
+  const cardCorner =
+    hoverBox && containerWidth > 0
+      ? {
+          vertical: hoverBox.top + hoverBox.height / 2 < totalHeight / 2 ? "bottom" : "top",
+          horizontal: hoverBox.left + hoverBox.width / 2 < containerWidth / 2 ? "right" : "left",
+        }
+      : { vertical: "bottom", horizontal: "right" };
 
   const cardPositionClass = `${cardCorner.vertical === "top" ? "top-4" : "bottom-4"} ${
     cardCorner.horizontal === "left" ? "left-4" : "right-4"
@@ -209,50 +196,56 @@ export function PersonalLifeSection() {
             <p className="font-display-alt text-[12px] font-bold uppercase tracking-[0.2em] text-[#4a9eff]">
               Off the clock
             </p>
-            <span className="font-mono text-[12px] text-white/40">{leaves.length}</span>
+            <span className="font-mono text-[12px] text-white/40">{flat.length}</span>
           </div>
         </div>
 
-        <div
-          ref={containerRef}
-          onMouseMove={handleMove}
-          onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-          className="relative h-[480px] w-full overflow-hidden sm:h-[620px]"
-        >
-          {leaves.map((leaf, i) => {
-            const depth = ((i % 5) + 1) * 2;
-            return (
-              <CollageTile
-                key={leaf.key}
-                leaf={leaf}
-                active={leaf.hobby.slug === activeSlug}
-                parallax={{ x: tilt.x * depth, y: tilt.y * depth }}
-                onEnter={() => setActiveSlug(leaf.hobby.slug)}
-                onLeave={() => setActiveSlug(null)}
-              />
-            );
-          })}
-
+        <div className="mx-auto max-w-5xl px-6 pb-10 sm:pb-14">
           <div
-            className={`pointer-events-none absolute z-20 w-[min(320px,80%)] rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${cardPositionClass} ${
-              active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-            }`}
+            ref={containerRef}
+            onMouseMove={handleMove}
+            onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+            className="relative"
+            style={{ height: totalHeight || undefined }}
           >
-            {active && ActiveIcon && (
-              <>
-                <span className="mb-3 flex size-9 items-center justify-center rounded-full bg-[#4a9eff]/20 text-[#4a9eff]">
-                  <ActiveIcon className="size-4" />
-                </span>
-                <h3 className="font-display-alt text-lg font-bold text-white">{active.title}</h3>
-                <p className="mt-0.5 text-[12px] text-white/50">{active.tagline}</p>
-                <p className="mt-3 text-[13px] leading-relaxed text-white/80">{active.description}</p>
-              </>
-            )}
+            {laidOut.map((photo, i) => {
+              const depth = ((i % 5) + 1) * 1.5;
+              return (
+                <CollageTile
+                  key={photo.key}
+                  photo={photo}
+                  active={photo.hobby.slug === activeSlug}
+                  parallax={{ x: tilt.x * depth, y: tilt.y * depth }}
+                  onEnter={() => {
+                    setActiveSlug(photo.hobby.slug);
+                    setHoverBox(photo);
+                  }}
+                  onLeave={() => setActiveSlug(null)}
+                />
+              );
+            })}
+
+            <div
+              className={`pointer-events-none absolute z-20 w-[min(320px,80%)] rounded-xl border border-white/15 bg-black/70 p-5 font-body-alt text-white shadow-2xl backdrop-blur-md transition-all duration-300 ${cardPositionClass} ${
+                active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+              }`}
+            >
+              {active && ActiveIcon && (
+                <>
+                  <span className="mb-3 flex size-9 items-center justify-center rounded-full bg-[#4a9eff]/20 text-[#4a9eff]">
+                    <ActiveIcon className="size-4" />
+                  </span>
+                  <h3 className="font-display-alt text-lg font-bold text-white">{active.title}</h3>
+                  <p className="mt-0.5 text-[12px] text-white/50">{active.tagline}</p>
+                  <p className="mt-3 text-[13px] leading-relaxed text-white/80">{active.description}</p>
+                </>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Mobile: hover doesn't apply on touch, so list everything inline below */}
-        <div className="mx-auto max-w-5xl px-6 py-8 sm:hidden">
+        <div className="mx-auto max-w-5xl px-6 pb-8 sm:hidden">
           <div className="grid gap-3">
             {hobbies.filter((h) => h.photos.length > 0).map((h) => {
               const Icon = hobbyIcons[h.icon];
