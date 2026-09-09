@@ -193,7 +193,7 @@ export default function Home() {
           <div aria-hidden className="absolute inset-0 -z-10">
             <div
               className="grid h-full grid-cols-4 sm:grid-cols-6"
-              style={{ filter: "blur(22px) saturate(0.85)", transform: "scale(1.15)" }}
+              style={{ filter: "blur(9px) saturate(0.95)", transform: "scale(1.1)" }}
             >
               {Array.from({ length: 18 }).map((_, i) => (
                 <div key={i} className="relative aspect-square overflow-hidden">
@@ -206,7 +206,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="absolute inset-0 bg-background/85" />
+            <div className="absolute inset-0 bg-background/70" />
           </div>
 
           <div className="mx-auto max-w-4xl px-6">
