@@ -14,6 +14,7 @@ import { GithubMark, LinkedinMark } from "@/components/icons";
 import { HandwritingText } from "@/components/ui/handwriting-text";
 import { ActivitiesSection } from "@/components/activities-section";
 import { PersonalLifeSection } from "@/components/personal-life-section";
+import { ContactForm } from "@/components/contact-form";
 import {
   awards,
   certifications,
@@ -271,7 +272,7 @@ export default function Home() {
         <PersonalLifeSection />
 
         {/* Contact */}
-        <section id="contact" className="grid gap-8 py-10 sm:grid-cols-[1.2fr_1fr] sm:py-14">
+        <section id="contact" className="grid gap-10 py-10 sm:grid-cols-[1.2fr_1fr] sm:py-14">
           <div>
             <h2 className="text-3xl font-medium">Let&apos;s talk.</h2>
             <p className="mt-3 max-w-[46ch] text-muted-foreground">
@@ -285,6 +286,7 @@ export default function Home() {
               {profile.email}
               <ArrowUpRight className="size-4" />
             </a>
+            <ContactForm email={profile.email} />
           </div>
           <ul className="grid content-start gap-3">
             {[
