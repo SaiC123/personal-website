@@ -183,29 +183,31 @@ export default function Home() {
             Awards &amp; recognition
           </p>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {awards.map((a) => (
               <div
                 key={`${a.event}-${a.detail}`}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"
+                className="flex items-start gap-3 rounded-xl border border-border bg-card p-3.5"
               >
-                <span className="flex h-9 shrink-0 items-center justify-center rounded-full border border-border bg-accent px-3 font-mono text-[12px] font-semibold text-brass-strong">
+                <span className="flex h-8 shrink-0 items-center justify-center rounded-full border border-border bg-accent px-2.5 font-mono text-[11px] font-semibold text-brass-strong">
                   {a.place}
                 </span>
-                <div>
-                  <p className="text-sm font-medium text-foreground">{a.event}</p>
-                  {a.detail && <p className="text-sm text-muted-foreground">{a.detail}</p>}
+                <div className="min-w-0">
+                  <p className="text-[13px] font-medium text-foreground">{a.event}</p>
+                  {a.detail && (
+                    <p className="text-[12px] text-muted-foreground">{a.detail}</p>
+                  )}
                   {a.description && (
-                    <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
+                    <p className="mt-1.5 text-[12.5px] leading-snug text-muted-foreground">
                       {a.description}
                     </p>
                   )}
                   {a.skills && a.skills.length > 0 && (
-                    <div className="mt-2.5 flex flex-wrap gap-1.5">
-                      {a.skills.map((s) => (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {a.skills.slice(0, 3).map((s) => (
                         <span
                           key={s}
-                          className="rounded-full border border-border bg-accent/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                          className="rounded-full border border-border bg-accent/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
                         >
                           {s}
                         </span>

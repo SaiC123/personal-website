@@ -449,7 +449,7 @@ export const awards = [
     event: "TSA National Leadership Conference",
     detail: "Software Development",
     description:
-      "Built MirrorMind, a real-time, on-device emotion-recognition Chrome extension that reads facial expressions aloud so people who are blind or visually impaired can follow along in conversation. Presented live with the full detection pipeline running on stage.",
+      "MirrorMind, a real-time Chrome extension that reads facial expressions aloud for people who are blind or visually impaired.",
     skills: ["MediaPipe", "TensorFlow.js", "Chrome extension APIs", "TypeScript", "Google OAuth2", "Product design"],
   },
   {
@@ -457,7 +457,7 @@ export const awards = [
     event: "FBLA State Leadership Conference",
     detail: "Intro to Social Media Strategy",
     description:
-      "Designed a Facebook-first growth strategy for Akshaya Patra, a nonprofit fighting child food insecurity, including a content and design framework, an AI post-optimization tool, and a full budget and metrics plan.",
+      "A Facebook-first growth strategy for Akshaya Patra, a nonprofit fighting child food insecurity.",
     skills: ["Social media strategy", "Campaign planning", "Budgeting", "Canva", "A/B testing", "Data-driven marketing"],
   },
   {
@@ -465,7 +465,7 @@ export const awards = [
     event: "FBLA State Leadership Conference",
     detail: "Data Analysis",
     description:
-      "Built a data model to optimize crowd management, transportation, and athlete housing for the 2028 LA Olympics, combining clustering, Monte Carlo simulation, and Olympic operations research into funding and staffing recommendations.",
+      "A data model optimizing crowd management, transportation, and housing for the 2028 LA Olympics.",
     skills: ["Python", "Pandas / NumPy", "Data visualization", "Statistical modeling", "Monte Carlo simulation", "Jupyter Notebook"],
   },
   {
@@ -473,15 +473,14 @@ export const awards = [
     event: "FBLA State Leadership Conference",
     detail: "Community Service Project",
     description:
-      "Co-led a food-insecurity initiative that collected over 5,000 lbs of food, reached 300+ households, and helped open new community food pantries, backed by original survey research and a $10,000 grant.",
+      "Co-led a food-insecurity initiative that collected 5,000+ lbs of food and reached 300+ households.",
     skills: ["Program management", "Community organizing", "Grant management", "Survey research", "Public speaking"],
   },
   {
     place: "Top 1%",
     event: "Blue Ocean",
     detail: "MirrorMind",
-    description:
-      "Rebuilt MirrorMind's emotion-recognition system as a physical wearable, engineering the hardware and connecting it to the same real-time detection pipeline as the software version, then pitched it to Blue Ocean judges.",
+    description: "Rebuilt MirrorMind as a physical wearable, engineering the hardware from scratch.",
     skills: ["Hardware prototyping", "Embedded systems", "Computer vision", "Pitching"],
   },
 ];
