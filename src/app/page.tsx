@@ -131,6 +131,11 @@ export default function Home() {
                 <LinkedinMark className="size-4" /> LinkedIn
               </a>
             </div>
+            <p className="mt-5 max-w-[52ch] text-[13px] text-muted-foreground">
+              This site is a quick, personal look at who I am, with a brief overview of my work and
+              activities. For the professional deep dive, see LinkedIn, and for what I&apos;m
+              currently building, see GitHub.
+            </p>
           </div>
 
           <div className="relative size-52 shrink-0 overflow-hidden rounded-full border border-border bg-card sm:size-64">
