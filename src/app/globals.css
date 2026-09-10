@@ -162,9 +162,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
   html {
     @apply font-sans;
+    overflow-x: hidden;
   }
   h1, h2, h3 {
     @apply font-heading;
