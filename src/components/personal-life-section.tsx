@@ -15,6 +15,7 @@ import {
   ChefHat,
   Film,
   Heart,
+  Dog,
   type LucideIcon,
 } from "lucide-react";
 
@@ -35,6 +36,7 @@ const hobbyIcons: Record<Hobby["icon"], LucideIcon> = {
   food: ChefHat,
   anime: Film,
   family: Heart,
+  dog: Dog,
 };
 
 type FlatPhoto = { key: string; hobby: Hobby; src: string | null; aspect: number };

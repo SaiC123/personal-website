@@ -521,7 +521,8 @@ export type Hobby = {
     | "starbucks"
     | "food"
     | "anime"
-    | "family";
+    | "family"
+    | "dog";
   /**
    * Real photos for this tile, each with its own width/height aspect ratio
    * (width / height) so the collage can lay them out like a justified photo
@@ -693,5 +694,14 @@ export const hobbies: Hobby[] = [
       "I have one sister, a mom, and a dad. Growing up with them has been awesome, and I love my family.",
     icon: "family",
     photos: [{ src: "/images/personal/family.jpg", aspect: 1.356 }],
+  },
+  {
+    slug: "oreo",
+    title: "Oreo",
+    tagline: "My dog, since my 10th birthday",
+    description:
+      "Oreo is my dog. I got him on my tenth birthday, and he's been an emotional support and a big part of my family ever since.",
+    icon: "dog",
+    photos: [{ src: "/images/personal/oreo.jpg", aspect: 0.6765 }],
   },
 ];
