@@ -520,7 +520,8 @@ export type Hobby = {
     | "car"
     | "starbucks"
     | "food"
-    | "anime";
+    | "anime"
+    | "family";
   /**
    * Real photos for this tile, each with its own width/height aspect ratio
    * (width / height) so the collage can lay them out like a justified photo
@@ -683,5 +684,14 @@ export const hobbies: Hobby[] = [
       "I've watched a lot of anime so far: Naruto, Death Note, Seven Deadly Sins, Black Clover, Vinland Saga, Attack on Titan, Your Lie in April, I Want to Eat Your Pancreas, Demon Slayer, Your Name, A Silent Voice, Hunter x Hunter, Jujutsu Kaisen, and Boruto. Always open to recommendations.",
     icon: "anime",
     photos: [{ src: "/images/personal/anime.jpg", aspect: 0.6667 }],
+  },
+  {
+    slug: "family",
+    title: "Family",
+    tagline: "One sister, a mom, and a dad",
+    description:
+      "I have one sister, a mom, and a dad. Growing up with them has been awesome, and I love my family.",
+    icon: "family",
+    photos: [{ src: "/images/personal/family.jpg", aspect: 1.356 }],
   },
 ];
