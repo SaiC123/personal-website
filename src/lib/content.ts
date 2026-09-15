@@ -314,17 +314,17 @@ export const activities: Activity[] = [
     role: "Dancer",
     org: "Shiv's Institute of Dance",
     place: "Atlanta, Georgia",
-    period: "Ongoing",
+    period: "Through Mar 2025",
     summary:
-      "Bollywood dancer with 30+ performances, including background dancing at 3 concerts and teaching classes.",
+      "Bollywood dancer with 30+ performances, including background dancing at 3 concerts and teaching classes, until I stopped in March 2025.",
     bullets: [
       "30+ performances.",
       "Background dancer at 3 concerts.",
       "Taught dance classes.",
     ],
     skills: ["Choreography", "Performance"],
-    image: "/images/dance.jpeg",
-    imageAlt: "Shiv's Institute of Dance logo",
+    image: "/images/backdrop/dance/dance-9.jpg",
+    imageAlt: "Sai dancing on stage",
   },
 ];
 
@@ -555,7 +555,7 @@ export const hobbies: Hobby[] = [
     title: "Dance",
     tagline: "Bollywood dancer, 30+ performances",
     description:
-      "Bollywood dance has been a constant for me, 30+ performances, background dancing at three concerts, and teaching classes on the side. It's the most fun way I know to work as a team.",
+      "Bollywood dance was a constant for me for years, 30+ performances, background dancing at three concerts, and teaching classes on the side, before I stopped in March 2025.",
     icon: "dance",
     photos: [
       { src: "/images/backdrop/dance/dance-1.jpg", aspect: 1.3333 },
