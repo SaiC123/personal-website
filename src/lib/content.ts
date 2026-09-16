@@ -200,8 +200,8 @@ export const activities: Activity[] = [
       "Retail banking operations",
       "Point-of-sale systems",
     ],
-    image: "/images/citizens-bank.png",
-    imageAlt: "Citizens Bank of Georgia logo",
+    image: "/images/citizens-bank.jpg",
+    imageAlt: "A bank teller counter",
   },
   {
     slug: "docubridge",
