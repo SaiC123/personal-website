@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono, Orbitron, Chakra_Petch } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${plexMono.variable} ${orbitron.variable} ${chakraPetch.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <SmoothScroll />
         {children}
         <Analytics />
       </body>

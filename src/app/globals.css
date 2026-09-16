@@ -167,12 +167,6 @@
   html {
     @apply font-sans;
     overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
   }
   h1, h2, h3 {
     @apply font-heading;
