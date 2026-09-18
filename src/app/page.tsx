@@ -10,7 +10,7 @@ import {
   Swords,
 } from "lucide-react";
 
-import { GithubMark, LinkedinMark } from "@/components/icons";
+import { GithubMark, InstagramMark, LinkedinMark } from "@/components/icons";
 import { HandwritingText } from "@/components/ui/handwriting-text";
 import { ActivitiesSection } from "@/components/activities-section";
 import { PersonalLifeSection } from "@/components/personal-life-section";
@@ -129,6 +129,14 @@ export default function Home() {
                 className="inline-flex items-center gap-1.5 border-b border-border pb-0.5 text-sm text-muted-foreground transition-colors hover:border-teal hover:text-teal"
               >
                 <LinkedinMark className="size-4" /> LinkedIn
+              </a>
+              <a
+                href={profile.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 border-b border-border pb-0.5 text-sm text-muted-foreground transition-colors hover:border-teal hover:text-teal"
+              >
+                <InstagramMark className="size-4" /> Instagram
               </a>
             </div>
             <p className="mt-5 max-w-[52ch] text-[13px] text-muted-foreground">

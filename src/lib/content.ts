@@ -5,6 +5,7 @@ export const profile = {
   email: "sai.chowdarapu09@gmail.com",
   linkedin: "https://www.linkedin.com/in/sai-chowdarapu/",
   github: "https://github.com/SaiC123",
+  instagram: "https://www.instagram.com/saichowvlogs/",
   bio: "Current student taking college-level coursework at Georgia Tech. Most of what I do outside class is running things, and figuring out the financial and operational side that keeps each one working.",
   focusNote:
     "Studying Computer Science and Business, with a running interest in how the two fit together.",

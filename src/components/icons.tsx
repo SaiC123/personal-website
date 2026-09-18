@@ -6,6 +6,16 @@ export function GithubMark({ className }: { className?: string }) {
   );
 }
 
+export function InstagramMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+      <circle cx="12" cy="12" r="4.6" />
+      <circle cx="17.35" cy="6.65" r="1.15" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function LinkedinMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
