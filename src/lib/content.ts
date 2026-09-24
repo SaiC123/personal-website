@@ -48,11 +48,11 @@ export const activities: Activity[] = [
     place: "Alpharetta, Georgia",
     period: "Jun 2025 - Present",
     summary:
-      "A tutoring company I co-founded and help run, with about 100 students, a five-person tutor team, and 500+ sessions so far.",
+      "Lead an 8-tutor team serving 200+ students across 30+ courses, from 10 AP subjects to SAT/ACT prep and finance.",
     bullets: [
-      "Co-founded and operate a tutoring business serving ~100 students with a 5-person tutor team, running 500+ sessions and generating $5,000+ in profit since 11th grade.",
-      "Contributed to 200+ AP scores of 5 among students through structured academic support.",
-      "Designed the business, marketing, and pricing strategy that drove client acquisition and revenue growth since launch.",
+      "Manage an 8-tutor team delivering 30+ courses (10 APs, SAT/ACT, finance) to 200+ students.",
+      "Run the business end to end, from pricing and marketing to scheduling and payments, earning $3K+ in profit.",
+      "Students have earned 200+ AP scores of 5.",
     ],
     skills: [
       "Business strategy",
@@ -75,11 +75,11 @@ export const activities: Activity[] = [
     place: "Washington, D.C. (Remote)",
     period: "Jul 2026 - Present",
     summary:
-      "Developed a business proposal and secured a $3,500 grant for an entrepreneur in Bauchi State, Nigeria, alongside 78 hours of community service.",
+      "Built a business plan with a 5-person team for a Nigerian startup, then pitched to Microsoft, AWS, and Georgetown judges and won a $3,500 grant.",
     bullets: [
-      "Collaborated with business and international development professionals to develop a business proposal, marketing strategy, branding, and startup budget for an aspiring entrepreneur in Bauchi State, Nigeria.",
-      "Pitched to investors and professionals from Microsoft, Georgetown University, and AWS, securing a $3,500 grant for implementation, alongside 78 hours of community service.",
-      "Continuing into a year-long International Leadership Program, developing business-oriented solutions to local problems in Nigeria.",
+      "Built a business plan, marketing strategy, branding, and startup budget with a 5-person team for an entrepreneur in Bauchi State, Nigeria.",
+      "Pitched to judges from Microsoft, AWS, and Georgetown University, securing a $3,500 grant for implementation.",
+      "Continuing into a year-long International Leadership Program, building business solutions for local problems in Nigeria.",
     ],
     skills: [
       "Business plan development",
@@ -101,10 +101,11 @@ export const activities: Activity[] = [
     place: "Alpharetta, Georgia",
     period: "Jul 2025 - Present",
     summary:
-      "A 501(c)(3) nonprofit social media marketing agency I co-founded, revolutionizing digital marketing for local businesses.",
+      "Co-founded a nonprofit marketing agency that has delivered branding and web services to 20+ local businesses (~$100M combined value).",
     bullets: [
-      "Co-founded a 501(c)(3) nonprofit social media marketing agency serving local businesses and community organizations.",
-      "Oversee operations, branding, and client acquisition while managing a creative and outreach team.",
+      "Co-founded a 501(c)(3) nonprofit social media marketing agency.",
+      "Lead a team of 10 interns delivering branding and web services.",
+      "Served 20+ local businesses with a combined value of ~$100M.",
     ],
     skills: [
       "Digital marketing",
@@ -126,10 +127,11 @@ export const activities: Activity[] = [
     place: "Global",
     period: "May 2025 - Present",
     summary:
-      "Co-founded Pypath, expanding access to Python education for underserved communities, now running in schools across 9 countries.",
+      "Designed a free Python curriculum and deployed it to 25+ schools in 6 countries, reaching 1,000+ students in developing regions.",
     bullets: [
-      "Co-founded Pypath to expand access to Python and computer science education for underserved communities.",
-      "Grew the program into schools across 9 countries.",
+      "Designed a free Python curriculum for schools in developing countries.",
+      "Deployed it to 25+ schools across 6 countries, reaching 1,000+ students.",
+      "Founding partner running curriculum design and program rollout.",
     ],
     skills: [
       "Python",
@@ -150,10 +152,11 @@ export const activities: Activity[] = [
     place: "Georgia",
     period: "Mar 2026 - Present",
     summary:
-      "Co-founded a statewide student entrepreneurship competition helping student founders develop, validate, and pitch startup ideas.",
+      "Launched one of Georgia's largest student startup sprints: 70+ teams and 200+ students, with $1.6K raised.",
     bullets: [
-      "Co-founded InnovateATL, a statewide student entrepreneurship competition helping student founders develop, validate, and pitch startup ideas.",
-      "Lead operations, outreach, sponsorships, partnerships, and competition execution.",
+      "Launched and run the sprint end to end: 70+ teams, 200+ student participants, and $1.6K raised.",
+      "Built a partner network of 7 organizations, including CREATE-X, Tech Square VC, and GT CEISMC.",
+      "Own operations, outreach, sponsorships, and event execution.",
     ],
     skills: [
       "Operations",
@@ -174,10 +177,11 @@ export const activities: Activity[] = [
     place: "San Francisco, California",
     period: "Aug 2026 - Present",
     summary:
-      "Help The HomeMore Project, a nonprofit working to end homelessness, build the presentations and materials behind their grant applications.",
+      "Created 5 pitch decks and scripts for a homelessness nonprofit's grant and outreach work, used in 100+ meetings.",
     bullets: [
-      "Build presentations and supporting materials used in funding and grant applications.",
-      "Support a nonprofit focused on ending homelessness through housing and outreach programs.",
+      "Created 5 pitch decks and accompanying scripts supporting grant applications and outreach.",
+      "The materials have been used in 100+ meetings.",
+      "The organization has distributed 1,200+ solar packs across 25 cities.",
     ],
     skills: ["Presentation design", "Grant writing", "Nonprofit support", "Google Slides", "Canva"],
     image: "/images/homemore-project.png",
@@ -190,16 +194,17 @@ export const activities: Activity[] = [
     place: "Alpharetta, Georgia",
     period: "Sep 2026 - Present",
     summary:
-      "Teller at Citizens Bank of Georgia, handling customer transactions and account services at a community bank.",
+      "Analyze 10+ client financial statements daily for liquidity and credit risk, while serving 20+ customers and handling $15K+ in cash a day.",
     bullets: [
-      "Process customer deposits, withdrawals, and account transactions.",
-      "Learned hands-on retail banking and customer service operations at a community bank.",
+      "Analyze 10+ client financial statements daily, assessing liquidity and credit risk.",
+      "Serve 20+ customers and handle $15K+ in cash daily.",
+      "Process deposits and loans.",
     ],
     skills: [
-      "Customer service",
-      "Financial transactions",
+      "Financial statement analysis",
+      "Credit & liquidity risk",
+      "Cash handling",
       "Retail banking operations",
-      "Point-of-sale systems",
     ],
     image: "/images/citizens-bank.jpg",
     imageAlt: "A bank teller counter",
@@ -228,13 +233,13 @@ export const activities: Activity[] = [
     place: "St. Louis, Missouri",
     period: "May 2024 - Aug 2024",
     summary:
-      "Completed hands-on entrepreneurship and financial-analysis projects, building a financial forecasting model that improved profit-projection accuracy by 20%.",
+      "Analyzed an $8M convention budget for a 100K+ member nonprofit and built predictive financial models that identified ~$100,000 in savings.",
     bullets: [
-      "Completed 5+ hands-on projects in entrepreneurship and financial analysis, producing business models and presentations evaluated by finance professionals.",
-      "Developed a comprehensive startup business plan with revenue projections, cost structures, and break-even analysis, presented to a panel of 6 executives.",
-      "Built a financial forecasting model that improved profit projection accuracy by 20%, enhancing strategic decision-making in simulation exercises.",
+      "Analyzed an $8M convention budget for NRIVA, a nonprofit with 100K+ members.",
+      "Built predictive financial models that identified ~$100,000 in potential savings.",
+      "Completed 5+ hands-on projects, including a startup business plan (revenue projections, cost structure, break-even analysis) presented to a panel of 6 executives and a forecasting model that improved profit-projection accuracy by 20% in simulations.",
     ],
-    skills: ["Financial modeling", "Excel", "Business planning"],
+    skills: ["Financial modeling", "Predictive modeling", "Budget analysis", "Excel", "Business planning"],
     image: "/images/nriva-logo.jpeg",
     imageAlt: "NRIVA logo",
     extraImage: "/images/nriva-extra.png",
@@ -247,13 +252,13 @@ export const activities: Activity[] = [
     place: "Alpharetta, Georgia",
     period: "Oct 2025 - Present",
     summary:
-      "Designed and lead the STEM curriculum for a robotics program serving 20+ preschool students.",
+      "Taught 30+ preschoolers the fundamentals of robotics and engineering through hands-on lessons, 3x a week over 6 months.",
     bullets: [
-      "Lead robotics education sessions for 20+ preschool students, introducing foundational STEM and problem-solving concepts through interactive projects.",
-      "Designed age-appropriate lesson plans that built students' creativity, logical reasoning, and teamwork.",
-      "Worked with instructors to streamline curriculum delivery, improving engagement across all participating classes.",
+      "Designed and led a robotics and engineering curriculum for 30+ preschool students.",
+      "Ran hands-on build sessions 3x per week over 6 months.",
+      "Coordinated with instructors to streamline delivery and improve engagement across classes.",
     ],
-    skills: ["Curriculum design", "Team leadership", "Lesson planning"],
+    skills: ["Robotics", "Curriculum design", "Lesson planning", "Team leadership"],
     image: "/images/trailblazer-robotics.png",
     imageAlt: "Trailblazer Robotics flame-and-gear logo",
   },
@@ -263,9 +268,14 @@ export const activities: Activity[] = [
     org: "National Institute of Technology, Warangal",
     place: "Warangal, India",
     period: "Ongoing",
-    summary: "Cybersecurity research.",
-    bullets: ["Conducting cybersecurity research."],
-    skills: ["Python", "Cybersecurity fundamentals", "Technical writing"],
+    summary:
+      "Built an ML anomaly detector that secures MQTT/TLS traffic on IoT networks, reaching 96% accuracy across 8 attack types.",
+    bullets: [
+      "Built a machine-learning anomaly detector for IoT networks, monitoring MQTT/TLS traffic.",
+      "Reached 96% detection accuracy across 8 attack types.",
+      "Co-authoring a research paper with Prof. Meher Preetam.",
+    ],
+    skills: ["Python", "Machine learning", "Anomaly detection", "IoT & network security", "Technical writing"],
     image: "/images/nit-research.jpeg",
     imageAlt: "National Institute of Technology, Warangal emblem",
   },
@@ -275,9 +285,14 @@ export const activities: Activity[] = [
     org: "Conduct Flow",
     place: "Remote",
     period: "Ongoing",
-    summary: "An AI B2B SaaS project.",
-    bullets: ["Building an AI-powered B2B SaaS product."],
-    skills: ["Python", "Product development", "Figma"],
+    summary:
+      "Built an LLM pipeline for client-to-task automation, piloted by 10+ organizations with 63% faster workflows and a 73% acceptance rate.",
+    bullets: [
+      "Engineered an LLM pipeline for client-to-task automation.",
+      "Ran pilots with 10+ organizations: 63% faster workflows and a 73% acceptance rate.",
+      "Pitched to Red Line and Telora VCs and spoke at an AI conference.",
+    ],
+    skills: ["Python", "LLM pipelines", "Workflow automation", "Product development", "Figma"],
     image: "/images/conduct-flow.png",
     imageAlt: "Conduct Flow logo",
   },
@@ -304,9 +319,15 @@ export const activities: Activity[] = [
     org: "Piano",
     place: "Atlanta, Georgia",
     period: "Ongoing",
-    summary: "College-level pianist, certified through the Guild and ABRSM.",
-    bullets: ["College-level pianist.", "Certified through the Guild and ABRSM."],
-    skills: ["Music theory", "Performance"],
+    summary:
+      "12 years of piano, reaching college-level proficiency (ABRSM Level 5) with 40+ recitals performed.",
+    bullets: [
+      "Studied piano for 12 years, reaching college-level proficiency (ABRSM Level 5).",
+      "Performed 40+ recitals.",
+      "Helped teach ~10 younger students.",
+      "Certified through the Guild and ABRSM.",
+    ],
+    skills: ["Music theory", "Performance", "Teaching"],
     image: "/images/piano.jpg",
     imageAlt: "Sai performing at a piano recital",
   },
