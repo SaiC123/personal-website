@@ -48,10 +48,11 @@ export const activities: Activity[] = [
     place: "Alpharetta, Georgia",
     period: "Jun 2025 - Present",
     summary:
-      "Lead an 8-tutor team serving 200+ students across 30+ courses, from 10 AP subjects to SAT/ACT prep and finance.",
+      "Trained 7 tutors and served 100+ recurring students across 350+ classes, about a third of them free for underprivileged kids, now scaling nationally.",
     bullets: [
-      "Manage an 8-tutor team delivering 30+ courses (10 APs, SAT/ACT, finance) to 200+ students.",
-      "Run the business end to end, from pricing and marketing to scheduling and payments, earning $3K+ in profit.",
+      "Trained a 7-person tutor team delivering 350+ classes (APs, SAT/ACT, finance) to 100+ recurring students.",
+      "Roughly a third of classes are free for underprivileged kids.",
+      "Run the business end to end, from pricing and marketing to scheduling and payments, and are scaling nationally with ~$3K in profit.",
       "Students have earned 200+ AP scores of 5.",
     ],
     skills: [
@@ -127,11 +128,11 @@ export const activities: Activity[] = [
     place: "Global",
     period: "May 2025 - Present",
     summary:
-      "Designed a free Python curriculum and deployed it to 25+ schools in 6 countries, reaching 1,000+ students in developing regions.",
+      "Founded and directed a Python certification pathway for 1,100+ students, scaled to 14+ countries and 25+ partner schools.",
     bullets: [
-      "Designed a free Python curriculum for schools in developing countries.",
-      "Deployed it to 25+ schools across 6 countries, reaching 1,000+ students.",
-      "Founding partner running curriculum design and program rollout.",
+      "Founded and directed a free Python certification pathway reaching 1,100+ total students.",
+      "Scaled the program to 14+ countries, driving school partnerships across 25+ schools.",
+      "Run global outreach, curriculum design, and program rollout.",
     ],
     skills: [
       "Python",
@@ -152,10 +153,11 @@ export const activities: Activity[] = [
     place: "Georgia",
     period: "Mar 2026 - Present",
     summary:
-      "Launched one of Georgia's largest student startup sprints: 70+ teams and 200+ students, with $1.6K raised.",
+      "Founded Georgia's first student startup sprint: 200+ students on 70+ teams, 9 partners, $2K+ raised, and coverage from 2 news outlets.",
     bullets: [
-      "Launched and run the sprint end to end: 70+ teams, 200+ student participants, and $1.6K raised.",
-      "Built a partner network of 7 organizations, including CREATE-X, Tech Square VC, and GT CEISMC.",
+      "Founded and run the sprint end to end: 200+ student participants on 70+ teams, with $2K+ raised.",
+      "Built a partner network of 9 organizations, including a state representative and 3 VCs.",
+      "Covered by 2 news outlets.",
       "Own operations, outreach, sponsorships, and event execution.",
     ],
     skills: [
@@ -194,11 +196,11 @@ export const activities: Activity[] = [
     place: "Alpharetta, Georgia",
     period: "Sep 2026 - Present",
     summary:
-      "Analyze 10+ client financial statements daily for liquidity and credit risk, while serving 20+ customers and handling $15K+ in cash a day.",
+      "Analyze 10+ financial statements daily for liquidity and credit risk, process ~$400K in daily deposit volume, and reconcile $15K+ in cash inflow.",
     bullets: [
-      "Analyze 10+ client financial statements daily, assessing liquidity and credit risk.",
-      "Serve 20+ customers and handle $15K+ in cash daily.",
-      "Process deposits and loans.",
+      "Analyze 10+ financial statements daily, assessing liquidity and credit risk.",
+      "Process ~$400K in daily deposit volume and reconcile $15K+ in cash inflow.",
+      "Serve 20+ customers and process deposits and loans.",
     ],
     skills: [
       "Financial statement analysis",
@@ -233,10 +235,10 @@ export const activities: Activity[] = [
     place: "St. Louis, Missouri",
     period: "May 2024 - Aug 2024",
     summary:
-      "Analyzed an $8M convention budget for a 100K+ member nonprofit and built predictive financial models that identified ~$100,000 in savings.",
+      "Analyzed and optimized the budget for a $2M convention for a 5,000+ member nonprofit, modeling cost allocation to save ~$50,000 in vendor spend.",
     bullets: [
-      "Analyzed an $8M convention budget for NRIVA, a nonprofit with 100K+ members.",
-      "Built predictive financial models that identified ~$100,000 in potential savings.",
+      "Analyzed and optimized the budget for a $2M convention for NRIVA, a nonprofit with 5,000+ members.",
+      "Modeled cost allocation to save ~$50,000 in vendor spend.",
       "Completed 5+ hands-on projects, including a startup business plan (revenue projections, cost structure, break-even analysis) presented to a panel of 6 executives and a forecasting model that improved profit-projection accuracy by 20% in simulations.",
     ],
     skills: ["Financial modeling", "Predictive modeling", "Budget analysis", "Excel", "Business planning"],
@@ -269,13 +271,20 @@ export const activities: Activity[] = [
     place: "Warangal, India",
     period: "Ongoing",
     summary:
-      "Built an ML anomaly detector that secures MQTT/TLS traffic on IoT networks, reaching 96% accuracy across 8 attack types.",
+      "Researching adversarial attack mitigation in ML and developing a robustness framework against evasion attacks, with a publication targeted near Spring 2027.",
     bullets: [
-      "Built a machine-learning anomaly detector for IoT networks, monitoring MQTT/TLS traffic.",
-      "Reached 96% detection accuracy across 8 attack types.",
-      "Co-authoring a research paper with Prof. Meher Preetam.",
+      "Researching adversarial attack mitigation in machine learning under Prof. Meher Preetam, developing a robustness framework against evasion attacks.",
+      "Co-authoring a paper with a publication targeted near Spring 2027.",
+      "Earlier built an ML anomaly detector for IoT networks monitoring MQTT/TLS traffic, reaching 96% accuracy across 8 attack types.",
     ],
-    skills: ["Python", "Machine learning", "Anomaly detection", "IoT & network security", "Technical writing"],
+    skills: [
+      "Python",
+      "Machine learning",
+      "Adversarial ML",
+      "Anomaly detection",
+      "IoT & network security",
+      "Technical writing",
+    ],
     image: "/images/nit-research.jpeg",
     imageAlt: "National Institute of Technology, Warangal emblem",
   },
@@ -286,10 +295,11 @@ export const activities: Activity[] = [
     place: "Remote",
     period: "Ongoing",
     summary:
-      "Built an LLM pipeline for client-to-task automation, piloted by 10+ organizations with 63% faster workflows and a 73% acceptance rate.",
+      "Architected an agentic NLP pipeline that automates client-to-task work for SMBs: 10+ pilots, 80+ employees helped, 73% acceptance, and a $10K grant nomination.",
     bullets: [
-      "Engineered an LLM pipeline for client-to-task automation.",
-      "Ran pilots with 10+ organizations: 63% faster workflows and a 73% acceptance rate.",
+      "Architected an agentic NLP pipeline automating client-to-task work for SMBs.",
+      "Ran 10+ pilots that helped 80+ employees, with a 73% acceptance rate and 63% faster workflows.",
+      "Nominated for a $10K grant, advised by Forbes 30 Under 30 honoree Sergio Sepulveda Cuevas.",
       "Pitched to Red Line and Telora VCs and spoke at an AI conference.",
     ],
     skills: ["Python", "LLM pipelines", "Workflow automation", "Product development", "Figma"],
@@ -338,11 +348,12 @@ export const activities: Activity[] = [
     place: "Atlanta, Georgia",
     period: "Through Mar 2025",
     summary:
-      "Bollywood dancer with 30+ performances, including background dancing at 3 concerts and teaching classes, until I stopped in March 2025.",
+      "Bollywood dancer for 13+ years: Top 5 at GA World of Dance, 2x Atlanta Hawks halftime dancer, 30+ shows, and 80+ students taught, until I stopped in March 2025.",
     bullets: [
-      "30+ performances.",
-      "Background dancer at 3 concerts.",
-      "Taught dance classes.",
+      "Top 5 at GA World of Dance after 13+ years of training.",
+      "2x Atlanta Hawks halftime dancer.",
+      "Danced for 500+ with Oscar winner Chandrabose, and as a background dancer at 3 concerts.",
+      "30+ shows, and taught 80+ students.",
     ],
     skills: ["Choreography", "Performance"],
     image: "/images/backdrop/dance/dance-9.jpg",
